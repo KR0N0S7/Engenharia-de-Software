@@ -10,4 +10,8 @@ public abstract class Log {
 	public void registrarTransacao(Usuario usuario, Fornecedor fornecedor) {
 		
 	}
+
+	public long getDataHora() {
+		return dataHora;
+	}
 }
