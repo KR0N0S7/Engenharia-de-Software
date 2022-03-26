@@ -17,4 +17,13 @@ public class UF {
 	public void setPais(Pais pais) {	this.pais = pais;	}
 	public List<Cidade> getCidades() {	return cidades;	}
 	public void setCidades(List<Cidade> cidades) {	this.cidades = cidades;	}
+	
+	public UF(String descricao, String sigla, Pais pais, List<Cidade> cidades) {
+		this.descricao = descricao;
+		this.sigla = sigla;
+		this.pais = pais;
+		this.cidades = cidades;
+	}
+	
+	
 }

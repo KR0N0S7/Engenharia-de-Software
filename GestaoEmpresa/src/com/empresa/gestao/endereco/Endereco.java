@@ -32,4 +32,19 @@ public class Endereco {
 	public void setTipoEndereco(TipoEndereco tipoEndereco) {	this.tipoEndereco = tipoEndereco;	}
 	public Fornecedor getFornecedor() {		return fornecedor;	}
 	public void setFornecedor(Fornecedor fornecedor) {		this.fornecedor = fornecedor;	}
+	
+	public Endereco(String cep, String logradouro, String numero, String bairro, String complemento, Cidade cidade,
+			TipoLogradouro tipoLogradouro, TipoEndereco tipoEndereco, Fornecedor fornecedor) {
+		this.cep = cep;
+		this.logradouro = logradouro;
+		this.numero = numero;
+		this.bairro = bairro;
+		this.complemento = complemento;
+		this.cidade = cidade;
+		this.tipoLogradouro = tipoLogradouro;
+		this.tipoEndereco = tipoEndereco;
+		this.fornecedor = fornecedor;
+	}
+	
+	
 }

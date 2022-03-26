@@ -14,4 +14,12 @@ public class Cidade {
 	public void setUf(UF uf) {		this.uf = uf;	}
 	public List<Endereco> getEnderecos() {		return enderecos;	}
 	public void setEnderecos(List<Endereco> enderecos) {	this.enderecos = enderecos;	}
+	
+	public Cidade(String descricao, UF uf, List<Endereco> enderecos) {
+		this.descricao = descricao;
+		this.uf = uf;
+		this.enderecos = enderecos;
+	}
+	
+	
 }

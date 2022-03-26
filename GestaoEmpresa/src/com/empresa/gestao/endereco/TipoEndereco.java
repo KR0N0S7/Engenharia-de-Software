@@ -12,4 +12,12 @@ public class TipoEndereco {
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
 	public Endereco getEndereco() {		return endereco;	}
 	public void setEndereco(Endereco endereco) {	this.endereco = endereco;	}
+	
+	public TipoEndereco(String nome, String descricao, Endereco endereco) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.endereco = endereco;
+	}
+	
+	
 }
