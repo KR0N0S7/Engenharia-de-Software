@@ -1,10 +1,11 @@
 package com.empresa.gestao.endereco;
 
+import com.empresa.gestao.exceptions.ExcecaoTamanhoPermitido;
 import com.empresa.gestao.fornecedor.Fornecedor;
 
 public class Endereco {
 
-	private String cep;
+	private int cep;
 	private String logradouro;
 	private String numero;
 	private String bairro;
@@ -14,8 +15,8 @@ public class Endereco {
 	private TipoEndereco tipoEndereco;
 	private Fornecedor fornecedor;
 	
-	public String getCep() {	return cep;	}
-	public void setCep(String cep) {	this.cep = cep;	}
+	public int getCep() {	return cep;	}
+	public void setCep(int cep) {	this.cep = cep;		}
 	public String getLogradouro() {		return logradouro;	}
 	public void setLogradouro(String logradouro) {		this.logradouro = logradouro;	}
 	public String getNumero() {		return numero;	}
@@ -33,8 +34,8 @@ public class Endereco {
 	public Fornecedor getFornecedor() {		return fornecedor;	}
 	public void setFornecedor(Fornecedor fornecedor) {		this.fornecedor = fornecedor;	}
 	
-	public Endereco(String cep, String logradouro, String numero, String bairro, String complemento, Cidade cidade,
-			TipoLogradouro tipoLogradouro, TipoEndereco tipoEndereco, Fornecedor fornecedor) {
+	public Endereco(int cep, String logradouro, String numero, String bairro, String complemento, Cidade cidade,
+			TipoLogradouro tipoLogradouro, TipoEndereco tipoEndereco, Fornecedor fornecedor) throws ExcecaoTamanhoPermitido {
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.numero = numero;
@@ -45,6 +46,5 @@ public class Endereco {
 		this.tipoEndereco = tipoEndereco;
 		this.fornecedor = fornecedor;
 	}
-	
 	
 }

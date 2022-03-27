@@ -16,6 +16,5 @@ public class Pais {
 		this.descricao = descricao;
 		this.ufs = ufs;
 	}
-	
-	
+		
 }

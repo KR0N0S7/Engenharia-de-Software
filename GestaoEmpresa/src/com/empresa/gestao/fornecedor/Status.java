@@ -1,4 +1,4 @@
-package com.empresa.gestao.produto;
+package com.empresa.gestao.fornecedor;
 
 public enum Status {
 

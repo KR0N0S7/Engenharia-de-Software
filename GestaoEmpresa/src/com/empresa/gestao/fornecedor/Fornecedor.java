@@ -5,8 +5,8 @@ import java.util.List;
 import com.empresa.gestao.empresa.Empresa;
 import com.empresa.gestao.endereco.CNAE;
 import com.empresa.gestao.endereco.Endereco;
+import com.empresa.gestao.exceptions.ExcecaoTamanhoPermitido;
 import com.empresa.gestao.produto.Produto;
-import com.empresa.gestao.produto.Status;
 import com.empresa.gestao.servico.OrdemServico;
 import com.empresa.gestao.servico.Servico;
 
@@ -15,7 +15,7 @@ public class Fornecedor {
 	private boolean isRascunho;
 	private int id;
 	private String email;
-	private String cnpj;
+	private int cnpj;
 	private String inscricaoEstadual;
 	private String inscricaoMunicipal;
 	private long dtCadastro;
@@ -32,14 +32,42 @@ public class Fornecedor {
 	private List<TipoFornecimento> tipoFornecimento;
 	private Status status;
 	
+	public Fornecedor(String email, int cnpj, String inscricaoEstadual, String inscricaoMunicipal, long dtCadastro,
+			String rzSocial, String nmFantasia, Endereco endereco, List<CNAE> cnae, List<Empresa> empresas,
+			List<OrdemServico> ordemServicos, List<Servico> servicos, List<Produto> produtos, List<Contato> contatos,
+			List<Telefone> telefone, List<TipoFornecimento> tipoFornecimento, Status status) {
+		this.email = email;
+		this.cnpj = cnpj;
+		this.inscricaoEstadual = inscricaoEstadual;
+		this.inscricaoMunicipal = inscricaoMunicipal;
+		this.dtCadastro = dtCadastro;
+		this.rzSocial = rzSocial;
+		this.nmFantasia = nmFantasia;
+		this.endereco = endereco;
+		this.cnae = cnae;
+		this.empresas = empresas;
+		this.ordemServicos = ordemServicos;
+		this.servicos = servicos;
+		this.produtos = produtos;
+		this.contatos = contatos;
+		this.telefone = telefone;
+		this.tipoFornecimento = tipoFornecimento;
+		this.status = status;
+	}
+	
 	public boolean isRascunho() {	return isRascunho;	}
 	public void setRascunho(boolean isRascunho) {	this.isRascunho = isRascunho;	}
 	public int getId() {	return id;	}
 	public void setId(int id) {		this.id = id;	}
 	public String getEmail() {	return email;	}
 	public void setEmail(String email) {	this.email = email;	}
-	public String getCnpj() {	return cnpj;	}
-	public void setCnpj(String cnpj) {		this.cnpj = cnpj;	}
+	public int getCnpj() {	return cnpj;	}
+	
+	public void setCnpj(int cnpj) throws ExcecaoTamanhoPermitido {	
+		if(cnpj != 14) throw new ExcecaoTamanhoPermitido("CNPJ deve conter 14 digitos.");
+		this.cnpj = cnpj;	
+	}
+	
 	public String getInscricaoEstadual() {		return inscricaoEstadual;	}
 	public void setInscricaoEstadual(String inscricaoEstadual) {	this.inscricaoEstadual = inscricaoEstadual;	}
 	public String getInscricaoMunicipal() {		return inscricaoMunicipal;	}

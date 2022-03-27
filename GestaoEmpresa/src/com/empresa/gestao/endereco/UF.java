@@ -2,6 +2,8 @@ package com.empresa.gestao.endereco;
 
 import java.util.List;
 
+import com.empresa.gestao.exceptions.ExcecaoUfNaoPermitido;
+
 public class UF {
 
 	private String descricao;
@@ -12,7 +14,12 @@ public class UF {
 	public String getDescricao() {	return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
 	public String getSigla() {	return sigla;	}
-	public void setSigla(String sigla) {	this.sigla = sigla;	}
+	
+	public void setSigla(String sigla) throws ExcecaoUfNaoPermitido {	
+		if(sigla.length() != 2) throw new ExcecaoUfNaoPermitido("UF deve possuir duas letras."); 
+		this.sigla = sigla;	
+	}
+	
 	public Pais getPais() {		return pais;	}
 	public void setPais(Pais pais) {	this.pais = pais;	}
 	public List<Cidade> getCidades() {	return cidades;	}
@@ -24,6 +31,5 @@ public class UF {
 		this.pais = pais;
 		this.cidades = cidades;
 	}
-	
 	
 }
