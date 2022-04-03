@@ -26,36 +26,15 @@ public class OrdemServico {
 	@ManyToOne
 	private Fornecedor fornecedor;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public long getDtInicio() {
-		return dtInicio;
-	}
-	public void setDtInicio(long dtInicio) {
-		this.dtInicio = dtInicio;
-	}
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
-	public List<Servico> getServicos() {
-		return servicos;
-	}
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
-	}
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
+	public long getId() {	return id;	}
+	public void setId(long id) {	this.id = id;	}	
+	public long getDtInicio() {	return dtInicio;	}
+	public void setDtInicio(long dtInicio) {	this.dtInicio = dtInicio;	}
+	public Empresa getEmpresa() {	return empresa;	}
+	public void setEmpresa(Empresa empresa) {	this.empresa = empresa;	}
+	public List<Servico> getServicos() {	return servicos;	}
+	public void setServicos(List<Servico> servicos) {	this.servicos = servicos;	}
+	public Fornecedor getFornecedor() {	return fornecedor;	}
+	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
 	
 }

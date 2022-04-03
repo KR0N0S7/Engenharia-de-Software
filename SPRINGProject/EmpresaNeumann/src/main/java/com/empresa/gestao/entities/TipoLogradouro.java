@@ -26,12 +26,8 @@ public class TipoLogradouro {
 	public void setNome(String nome) {		this.nome = nome;	}
 	public String getDescricao() {		return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
+	public List<Endereco> getEnderecos() {	return enderecos;	}
+	public void setEnderecos(List<Endereco> enderecos) {	this.enderecos = enderecos;	}
 	
 	
 }

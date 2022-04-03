@@ -28,46 +28,18 @@ public class Telefone {
 	@ManyToOne
 	private TipoTelefone tipoTelefone;
 	
-	public String getDdd() {
-		return ddd;
-	}
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
-	}
-	public String getNumero() {
-		return numero;
-	}
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-	public String getDdi() {
-		return ddi;
-	}
-	public void setDdi(String ddi) {
-		this.ddi = ddi;
-	}
-	public List<Contato> getContato() {
-		return contatos;
-	}
-	public void setContato(List<Contato> contatos) {
-		this.contatos = contatos;
-	}
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-	public void setFornnecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-	public TipoTelefone getTipoTelefone() {
-		return tipoTelefone;
-	}
-	public void setTipoTelefone(TipoTelefone tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	public String getDdd() {	return ddd;	}
+	public void setDdd(String ddd) {	this.ddd = ddd;	}
+	public String getNumero() {	return numero;	}
+	public void setNumero(String numero) {	this.numero = numero;	}
+	public String getDdi() {	return ddi;	}
+	public void setDdi(String ddi) {	this.ddi = ddi;	}
+	public List<Contato> getContato() {		return contatos;	}
+	public void setContato(List<Contato> contatos) {	this.contatos = contatos;	}
+	public Fornecedor getFornecedor() {		return fornecedor;	}
+	public void setFornnecedor(Fornecedor fornecedor) {		this.fornecedor = fornecedor;	}
+	public TipoTelefone getTipoTelefone() {		return tipoTelefone;	}
+	public void setTipoTelefone(TipoTelefone tipoTelefone) {	this.tipoTelefone = tipoTelefone;	}
+	public long getId() {	return id;	}
+	public void setId(long id) {	this.id = id;	}
 }

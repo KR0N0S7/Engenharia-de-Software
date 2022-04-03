@@ -39,24 +39,12 @@ public class Endereco {
 	public void setBairro(String bairro) {		this.bairro = bairro;	}
 	public String getComplemento() {	return complemento;	}
 	public void setComplemento(String complemento) {	this.complemento = complemento;	}
-	public Cidade getCidade() {
-		return cidade;
-	}
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
-	public TipoLogradouro getTipoLogradouro() {
-		return tipoLogradouro;
-	}
-	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {
-		this.tipoLogradouro = tipoLogradouro;
-	}
-	public TipoEndereco getTipoEndereco() {
-		return tipoEndereco;
-	}
-	public void setTipoEndereco(TipoEndereco tipoEndereco) {
-		this.tipoEndereco = tipoEndereco;
-	}
+	public Cidade getCidade() {		return cidade;	}
+	public void setCidade(Cidade cidade) {	this.cidade = cidade;	}
+	public TipoLogradouro getTipoLogradouro() {		return tipoLogradouro;	}
+	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {	this.tipoLogradouro = tipoLogradouro;	}
+	public TipoEndereco getTipoEndereco() {		return tipoEndereco;	}
+	public void setTipoEndereco(TipoEndereco tipoEndereco) {	this.tipoEndereco = tipoEndereco;	}
 	
 	
 }

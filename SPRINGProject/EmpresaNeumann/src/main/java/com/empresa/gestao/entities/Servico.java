@@ -21,31 +21,15 @@ public class Servico {
 	@ManyToOne
 	private OrdemServico ordemServico;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "servicos")
 	private List<Fornecedor> fornecedores;
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public OrdemServico getOrdemServico() {
-		return ordemServico;
-	}
-	public void setOrdemServico(OrdemServico ordemServico) {
-		this.ordemServico = ordemServico;
-	}
-	public List<Fornecedor> getFornecedor() {
-		return fornecedores;
-	}
-	public void setFornecedor(List<Fornecedor> fornecedores) {
-		this.fornecedores = fornecedores;
-	}
+	public int getId() {	return id;	}
+	public void setId(int id) {	this.id = id;	}
+	public String getDescricao() {	return descricao;	}
+	public void setDescricao(String descricao) {	this.descricao = descricao;	}
+	public OrdemServico getOrdemServico() {		return ordemServico;	}
+	public void setOrdemServico(OrdemServico ordemServico) {	this.ordemServico = ordemServico;	}
+	public List<Fornecedor> getFornecedor() {	return fornecedores;	}
+	public void setFornecedor(List<Fornecedor> fornecedores) {	this.fornecedores = fornecedores;	}
 }

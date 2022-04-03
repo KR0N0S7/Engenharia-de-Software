@@ -27,18 +27,10 @@ public class Cidade {
 	public void setId(long id) {	this.id = id;	}
 	public String getDescricao() {	return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public Estado getEstado() {
-		return estado;
-	}
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
+	public Estado getEstado() {		return estado;	}	
+	public void setEstado(Estado estado) {	this.estado = estado;	}
+	public List<Endereco> getEnderecos() {	return enderecos;	}
+	public void setEnderecos(List<Endereco> enderecos) {	this.enderecos = enderecos;	}
 	
 	
 }

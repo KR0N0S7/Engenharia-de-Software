@@ -23,12 +23,8 @@ public class Pais {
 	public void setId(long id) {	this.id = id;	}
 	public String getDescricao() {	return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public List<Estado> getEstados() {
-		return estados;
-	}
-	public void setEstados(List<Estado> estados) {
-		this.estados = estados;
-	}
+	public List<Estado> getEstados() {	return estados;	}
+	public void setEstados(List<Estado> estados) {	this.estados = estados;	}
 	
 	
 }

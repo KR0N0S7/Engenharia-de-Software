@@ -19,22 +19,10 @@ public class TipoTelefone {
 	@OneToMany(mappedBy = "tipoTelefone")
 	private List<Telefone> telefones;
 	
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	public List<Telefone> getTelefone() {
-		return telefones;
-	}
-	public void setTelefone(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	public String getDescricao() {	return descricao;	}
+	public void setDescricao(String descricao) {	this.descricao = descricao;	}
+	public List<Telefone> getTelefone() {	return telefones;	}
+	public void setTelefone(List<Telefone> telefones) {	this.telefones = telefones;	}
+	public long getId() {	return id;	}
+	public void setId(long id) {	this.id = id;	}
 }
