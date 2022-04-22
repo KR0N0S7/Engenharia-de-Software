@@ -1,6 +1,7 @@
 package com.empresa.gestao.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,14 @@ public class FornecedorService {
 	public List<Fornecedor> listarFornecedores() {
 		return fornecedorRepository.findAll();
 	}
-	
+
+	public Fornecedor obterFornecedor(Long id) {
+		Optional<Fornecedor> fornecedor = fornecedorRepository.findById(id);
+		return fornecedor.get();
+	}
+
+	public void excluirFornecedor(Long id) {
+		fornecedorRepository.deleteById(id);
+	}
 	
 }
