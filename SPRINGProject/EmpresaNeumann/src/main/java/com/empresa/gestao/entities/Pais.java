@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "paises")
 public class Pais {
 
 	@Id
@@ -16,15 +18,21 @@ public class Pais {
 	private long id;
 	private String descricao;
 	
-	@OneToMany(mappedBy = "pais")
-	private List<Estado> estados;
+//	@OneToMany(mappedBy = "pais")
+//	private List<Estado> estados;
+	
+	public Pais() {	}
+
+	public Pais(String descricao) {
+		this.descricao = descricao;
+	}
 	
 	public long getId() {	return id;	}
 	public void setId(long id) {	this.id = id;	}
 	public String getDescricao() {	return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public List<Estado> getEstados() {	return estados;	}
-	public void setEstados(List<Estado> estados) {	this.estados = estados;	}
+//	public List<Estado> getEstados() {	return estados;	}
+//	public void setEstados(List<Estado> estados) {	this.estados = estados;	}
 	
 	
 }

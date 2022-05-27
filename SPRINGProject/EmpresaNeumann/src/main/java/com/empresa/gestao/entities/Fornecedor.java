@@ -2,6 +2,7 @@ package com.empresa.gestao.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,12 +12,16 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
+import com.empresa.gestao.dao.ChaveEstrangeira;
+
 @Entity
+@Table(name = "fornecedores")
 public class Fornecedor {
 	
 	@Id
@@ -25,17 +30,28 @@ public class Fornecedor {
 	private int id;
 	private String email;
 	
-//	@NotEmpty(message = "Campo obrigatório.")
-//	@Size(min = 14, max = 14, message = "CNPJ deve conter 14 dígitos")
+//	@NotEmpty(message = "Campo obrigatï¿½rio.")
+//	@Size(min = 14, max = 14, message = "CNPJ deve conter 14 dï¿½gitos")
 //	@CNPJ
 	private String cnpj;
+	
+	@Column(name = "inscricao_estadual")
 	private String inscricaoEstadual;
+	
+	@Column(name = "inscricao_municipal")
 	private String inscricaoMunicipal;
+	
+	@Column(name = "dt_cadastro")
 	private long dtCadastro;
+	
+	@Column(name = "rz_social")
 	private String rzSocial;
+	
+	@Column(name = "nm_fantasia")
 	private String nmFantasia;
 	
 	@ManyToOne
+	@ChaveEstrangeira
 	private Endereco endereco;
 	
 	@ManyToMany
@@ -53,6 +69,7 @@ public class Fornecedor {
 	private List<Empresa> empresas;
 	
 	@OneToMany(mappedBy = "fornecedor")
+	@Column(name = "ordem_servicos")
 	private List<OrdemServico> ordemServicos;
 	
 	@ManyToMany
@@ -81,6 +98,10 @@ public class Fornecedor {
 //	public boolean isRascunho() {	return isRascunho;	}
 //	public void setRascunho(boolean isRascunho) {	this.isRascunho = isRascunho;	}
 
+	
+	public Fornecedor() {
+	}
+	
 	public int getId() {	return id;	}
 	public void setId(int id) {	this.id = id;	}
 	public String getEmail() {	return email;	}
