@@ -13,13 +13,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Contato;
 import com.empresa.gestao.services.ContatoService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("contato")
 public class ContatoController {
 
 	@Autowired
-	public ContatoService contatoService;
+	public ObjectService contatoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarContato(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class ContatoController {
 		ModelAndView mv = new ModelAndView("redirect:/contato");
 		try {
 			contatoService.excluirContato(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Contato excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Contato excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Contato.");
 		}

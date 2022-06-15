@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.TipoTelefone;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.TipoTelefoneService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.TipoTelefoneService;
 public class TipoTelefoneController {
 
 	@Autowired
-	public TipoTelefoneService tipoTelefoneService;
+	public ObjectService tipoTelefoneService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarTipoTelefone(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class TipoTelefoneController {
 		ModelAndView mv = new ModelAndView("redirect:/tptel");
 		try {
 			tipoTelefoneService.excluirTipoTelefone(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Telefone excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Telefone excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Tipo de Telefone.");
 		}

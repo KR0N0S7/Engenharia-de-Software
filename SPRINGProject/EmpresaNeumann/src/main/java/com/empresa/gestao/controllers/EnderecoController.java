@@ -1,5 +1,8 @@
 package com.empresa.gestao.controllers;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +16,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Endereco;
 import com.empresa.gestao.services.EnderecoService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("local")
 public class EnderecoController {
 
 	@Autowired
-	private EnderecoService enderecoService;
+	private ObjectService enderecoService;
 	
 	@RequestMapping("editar")
 	public ModelAndView salvarEndereco(@RequestParam(required = false) Long id) {
 		ModelAndView mv = new ModelAndView("local/endereco.html");
-		Endereco endereco;
+		Object endereco;
 		if (id == null) {
 			endereco = new Endereco();
 		} else {
 			try {
-				endereco = enderecoService.obterEndereco(id);
+				endereco = enderecoService.obterObject(id, Endereco.class);
 			} catch (Exception e) {
 				endereco = new Endereco();
 				mv.addObject("mensagem", e.getMessage());
@@ -40,7 +44,7 @@ public class EnderecoController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "editar")
-	public ModelAndView salvarEndereco(@Valid Endereco endereco, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public ModelAndView salvarEndereco(@Valid Endereco endereco, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, SQLException {
 		if(bindingResult.hasErrors()) {
 			ModelAndView mv = new ModelAndView("local/endereco.html");
 			mv.addObject("local", endereco);
@@ -48,23 +52,23 @@ public class EnderecoController {
 		}
 		ModelAndView mv = new ModelAndView("redirect:/local/listar");
 		boolean novo = true;
-		if (endereco != null) {
+		if (endereco.getId() != null) {
 			novo = false;
 		}
-		enderecoService.salvarEndereco(endereco);
+		enderecoService.salvarObject(endereco);
 		if (novo) {
 			mv.addObject("local", new Endereco());
 		} else {
 			mv.addObject("local", endereco);
 		}
-		mv.addObject("mensagem", "Endereço salvo com sucecsso!");
+		mv.addObject("mensagem", "Endereï¿½o salvo com sucecsso!");
 		return mv;
 	}
 	
 	@RequestMapping("/listar")
-	public ModelAndView listarEndereco() {
+	public ModelAndView listarEndereco() throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, SQLException {
 		ModelAndView mv = new ModelAndView("local/listar.html");
-		mv.addObject("lista", enderecoService.listarEnderecos());
+		mv.addObject("lista", enderecoService.listarObjects(Endereco.class));
 		return mv;
 	}
 	
@@ -72,10 +76,10 @@ public class EnderecoController {
 	public ModelAndView excluirEndereco(@RequestParam Long id, RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView("redirect:/local");
 		try {
-			enderecoService.excluirEndereco(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Endereço excluído com sucesso.");
+			enderecoService.excluirObject(id);
+			redirectAttributes.addFlashAttribute("mensagem", "Endereï¿½o excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir endereço." + e.getMessage());
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir endereï¿½o." + e.getMessage());
 		}
 		return mv;
 	}

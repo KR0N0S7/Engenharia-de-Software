@@ -1,5 +1,8 @@
 package com.empresa.gestao.controllers;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +16,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Fornecedor;
 import com.empresa.gestao.services.FornecedorService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("fornecedor")
 public class FornecedorController {
 
 	@Autowired
-	public FornecedorService fornecedorService;
+	public ObjectService fornecedorService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarFornecedor(@RequestParam(required = false) Long id) {
 		ModelAndView mv = new ModelAndView("fornecedor/form.html");
-		Fornecedor fornecedor;
+		Object fornecedor;
 		if(id == null) {
 			fornecedor = new Fornecedor();
 		} else {
 			try {
-				fornecedor = fornecedorService.obterFornecedor(id);
+				fornecedor = fornecedorService.obterObject(id, Fornecedor.class);
 			} catch (Exception e) {
 				fornecedor = new Fornecedor();
 				mv.addObject("mensagem", e.getMessage());
@@ -40,7 +44,7 @@ public class FornecedorController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "editar")
-	public ModelAndView fornecedorSalvo(@Valid Fornecedor fornecedor, BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
+	public ModelAndView fornecedorSalvo(@Valid Fornecedor fornecedor, BindingResult  bindingResult, RedirectAttributes redirectAttributes) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, SQLException {
 		if(bindingResult.hasErrors()) {
 			ModelAndView mv = new ModelAndView("fornecedor/form.html");
 			mv.addObject("fornecedor", fornecedor);
@@ -48,10 +52,10 @@ public class FornecedorController {
 		}
 		ModelAndView mv = new ModelAndView("redirect:/fornecedor/listar");
 		boolean novo = true;
-		if (fornecedor == null) {
+		if (fornecedor.getId() != null) {
 			novo = false;
 		} 
-		fornecedorService.salvarFornecedor(fornecedor);
+		fornecedorService.salvarObject(fornecedor);
 		if (novo) {
 			mv.addObject("fornecedor", new Fornecedor());
 		} else {
@@ -62,9 +66,9 @@ public class FornecedorController {
 	}
 	
 	@RequestMapping("/listar")
-	public ModelAndView listarFornecedores() {
+	public ModelAndView listarFornecedores() throws NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, SQLException {
 		ModelAndView mv = new ModelAndView("fornecedor/listar.html");
-		mv.addObject("lista", fornecedorService.listarFornecedores());
+		mv.addObject("lista", fornecedorService.listarObjects(Fornecedor.class));
 		return  mv;
 	}
 	
@@ -72,8 +76,8 @@ public class FornecedorController {
 	public ModelAndView excluirFornecedor(@RequestParam long id, RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView("redirect:/fornecedor");
 		try {
-			fornecedorService.excluirFornecedor(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Fornecedor excluído com sucesso.");
+			fornecedorService.excluirObject(id);
+			redirectAttributes.addFlashAttribute("mensagem", "Fornecedor excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Fornecedor.");
 		}

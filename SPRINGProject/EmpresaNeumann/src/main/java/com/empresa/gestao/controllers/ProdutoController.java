@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Produto;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.ProdutoService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.ProdutoService;
 public class ProdutoController {
 
 	@Autowired
-	public ProdutoService produtoService;
+	public ObjectService produtoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarProduto(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class ProdutoController {
 		ModelAndView mv = new ModelAndView("redirect:/produto");
 		try {
 			produtoService.excluirProduto(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Produto excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Produto excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Produto.");
 		}

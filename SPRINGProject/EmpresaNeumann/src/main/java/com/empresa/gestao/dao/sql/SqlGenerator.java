@@ -2,7 +2,7 @@ package com.empresa.gestao.dao.sql;
 
 import javax.persistence.Table;
 
-import com.empresa.gestao.dao.Tabela;
+import com.empresa.gestao.dao.annotations.Tabela;
 
 public class SqlGenerator {
 

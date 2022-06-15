@@ -7,17 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "usuarios")
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String login;
 	private String senha;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Pessoa pessoa;
 
 	public String getLogin() {	return login;	}
@@ -26,7 +26,7 @@ public class Usuario {
 	public void setSenha(String senha) {	this.senha = senha;	}
 	public Pessoa getPessoa() {		return pessoa;	}
 	public void setPessoa(Pessoa pessoa) {		this.pessoa = pessoa;	}
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
 
 }

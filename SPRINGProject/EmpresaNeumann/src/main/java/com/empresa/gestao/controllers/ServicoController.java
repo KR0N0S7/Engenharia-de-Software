@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Servico;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.ServicoService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.ServicoService;
 public class ServicoController {
 
 	@Autowired
-	public ServicoService servicoService;
+	public ObjectService servicoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarServico(@RequestParam(required = false) Long id) {
@@ -57,7 +58,7 @@ public class ServicoController {
 		} else {
 			mv.addObject("servico", servico);
 		}
-		redirectAttributes.addFlashAttribute("mensagem", "Serviço salvo com sucesso!");
+		redirectAttributes.addFlashAttribute("mensagem", "Serviï¿½o salvo com sucesso!");
 		return mv;
 	}
 	
@@ -73,9 +74,9 @@ public class ServicoController {
 		ModelAndView mv = new ModelAndView("redirect:/servico");
 		try {
 			servicoService.excluirServico(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Serviço excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Serviï¿½o excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Serviço.");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Serviï¿½o.");
 		}
 		return mv;
 	}

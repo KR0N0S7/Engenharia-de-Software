@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.TipoEndereco;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.TipoEnderecoService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.TipoEnderecoService;
 public class TipoEnderecoController {
 
 	@Autowired
-	public TipoEnderecoService tipoEnderecoService;
+	public ObjectService tipoEnderecoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarTipoEndereco(@RequestParam(required = false) Long id) {
@@ -57,7 +58,7 @@ public class TipoEnderecoController {
 		} else {
 			mv.addObject("tpend", tpend);
 		}
-		redirectAttributes.addFlashAttribute("mensagem", "Tipo de Endereço salvo com sucesso!");
+		redirectAttributes.addFlashAttribute("mensagem", "Tipo de Endereï¿½o salvo com sucesso!");
 		return mv;
 	}
 	
@@ -73,9 +74,9 @@ public class TipoEnderecoController {
 		ModelAndView mv = new ModelAndView("redirect:/tpend");
 		try {
 			tipoEnderecoService.excluirTipoEndereco(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Endereço excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Endereï¿½o excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Tipo de Endereço.");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Tipo de Endereï¿½o.");
 		}
 		return mv;
 	}

@@ -10,24 +10,24 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "telefones")
 public class Telefone {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String ddd;
 	private String numero;
 	private String ddi;
 	
-	@OneToMany(mappedBy = "telefone")
-	private List<Contato> contatos;
+//	@OneToMany(mappedBy = "telefone")
+//	private List<Contato> contatos;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Fornecedor fornecedor;
 	
-	@ManyToOne
+//	@ManyToOne
 	private TipoTelefone tipoTelefone;
 	
 	public String getDdd() {	return ddd;	}
@@ -36,12 +36,12 @@ public class Telefone {
 	public void setNumero(String numero) {	this.numero = numero;	}
 	public String getDdi() {	return ddi;	}
 	public void setDdi(String ddi) {	this.ddi = ddi;	}
-	public List<Contato> getContato() {		return contatos;	}
-	public void setContato(List<Contato> contatos) {	this.contatos = contatos;	}
 	public Fornecedor getFornecedor() {		return fornecedor;	}
 	public void setFornnecedor(Fornecedor fornecedor) {		this.fornecedor = fornecedor;	}
 	public TipoTelefone getTipoTelefone() {		return tipoTelefone;	}
 	public void setTipoTelefone(TipoTelefone tipoTelefone) {	this.tipoTelefone = tipoTelefone;	}
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
+//	public List<Contato> getContato() {		return contatos;	}
+//	public void setContato(List<Contato> contatos) {	this.contatos = contatos;	}
 }

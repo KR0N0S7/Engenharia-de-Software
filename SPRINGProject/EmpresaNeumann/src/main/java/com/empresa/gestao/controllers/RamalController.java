@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Ramal;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.RamalService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.RamalService;
 public class RamalController {
 
 	@Autowired
-	public RamalService ramalService;
+	public ObjectService ramalService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarRamal(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class RamalController {
 		ModelAndView mv = new ModelAndView("redirect:/ramal");
 		try {
 			ramalService.excluirRamal(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Ramal excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Ramal excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Ramal.");
 		}

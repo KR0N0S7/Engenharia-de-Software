@@ -9,22 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "tipos_telefones")
 public class TipoTelefone {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String descricao;
 	
-	@OneToMany(mappedBy = "tipoTelefone")
-	private List<Telefone> telefones;
-	
+//	@OneToMany(mappedBy = "tipoTelefone")
+//	private List<Telefone> telefones;
+//	
+//	public List<Telefone> getTelefone() {	return telefones;	}
+//	public void setTelefone(List<Telefone> telefones) {	this.telefones = telefones;	}
 	public String getDescricao() {	return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public List<Telefone> getTelefone() {	return telefones;	}
-	public void setTelefone(List<Telefone> telefones) {	this.telefones = telefones;	}
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
 }

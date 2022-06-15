@@ -1,5 +1,8 @@
 package com.empresa.gestao.controllers;
 
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Pais;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.PaisService;
 
 @Controller
@@ -19,17 +23,17 @@ import com.empresa.gestao.services.PaisService;
 public class PaisController {
 
 	@Autowired
-	public PaisService paisService;
+	public ObjectService paisService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarPais(@RequestParam(required = false) Long id) {
 		ModelAndView mv = new ModelAndView("pais/form.html");
-		Pais pais;
+		Object pais;
 		if(id == null) {
 			pais = new Pais();
 		} else {
 			try {
-				pais = paisService.obterPais(id);
+				pais = paisService.obterObject(id, Pais.class);
 			} catch (Exception e) {
 				pais = new Pais();
 				mv.addObject("mensagem", e.getMessage());
@@ -40,7 +44,7 @@ public class PaisController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, path = "editar")
-	public ModelAndView paisSalvo(@Valid Pais pais, BindingResult  bindingResult, RedirectAttributes redirectAttributes) {
+	public ModelAndView paisSalvo(@Valid Pais pais, BindingResult  bindingResult, RedirectAttributes redirectAttributes) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException, SQLException {
 		if(bindingResult.hasErrors()) {
 			ModelAndView mv = new ModelAndView("pais/form.html");
 			mv.addObject("pais", pais);
@@ -48,23 +52,25 @@ public class PaisController {
 		}
 		ModelAndView mv = new ModelAndView("redirect:/pais/listar");
 		boolean novo = true;
-		if (pais == null) {
+		if (pais.getId() != null) {
 			novo = false;
 		} 
-		paisService.salvarPais(pais);
 		if (novo) {
+			paisService.salvarObject(pais);
 			mv.addObject("pais", new Pais());
 		} else {
+			Long id = pais.getId();
+			paisService.alterarObject(id, pais);
 			mv.addObject("pais", pais);
 		}
-		redirectAttributes.addFlashAttribute("mensagem", "País salvo com sucesso!");
+		redirectAttributes.addFlashAttribute("mensagem", "PaÃ­s salvo com sucesso!");
 		return mv;
 	}
 	
 	@RequestMapping("/listar")
-	public ModelAndView listarPaies() {
+	public ModelAndView listarPaises() throws SQLException, NoSuchMethodException, SecurityException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		ModelAndView mv = new ModelAndView("pais/listar.html");
-		mv.addObject("lista", paisService.listarPaises());
+		mv.addObject("lista", paisService.listarObjects(Pais.class));
 		return  mv;
 	}
 	
@@ -72,10 +78,10 @@ public class PaisController {
 	public ModelAndView excluirPais(@RequestParam long id, RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView("redirect:/pais");
 		try {
-			paisService.excluirPais(id);
-			redirectAttributes.addFlashAttribute("mensagem", "País excluído com sucesso.");
+			paisService.excluirObject(id);
+			redirectAttributes.addFlashAttribute("mensagem", "Paï¿½s excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir País.");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Paï¿½s.");
 		}
 		return mv;
 	}

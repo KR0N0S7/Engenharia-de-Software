@@ -11,9 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.empresa.gestao.dao.ChaveEstrangeira;
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 
-@Entity
+//@Entity
 @Table(name = "estados")
 public class Estado {
 	@Id

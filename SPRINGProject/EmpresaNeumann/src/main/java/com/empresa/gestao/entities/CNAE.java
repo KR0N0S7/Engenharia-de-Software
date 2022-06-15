@@ -9,22 +9,22 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "cnaes")
 public class CNAE {
 		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String numero;
 	
-	@ManyToMany(mappedBy = "cnae")
-	private List<Fornecedor> fornecedores;
+	private Fornecedor fornecedor;
 	
 	public String getNumero() {	return numero;	}
 	public void setNumero(String numero) {	this.numero = numero;	}
-	public List<Fornecedor> getFornecedor() {	return fornecedores;	}
-	public void setFornecedor(List<Fornecedor> fornecedores) {	this.fornecedores = fornecedores;	}
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
+	public Fornecedor getFornecedor() {	return fornecedor;	}
+	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
+	
 }

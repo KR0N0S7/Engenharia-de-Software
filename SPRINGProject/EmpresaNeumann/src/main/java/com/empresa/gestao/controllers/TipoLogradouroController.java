@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.TipoLogradouro;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.TipoLogradouroService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.TipoLogradouroService;
 public class TipoLogradouroController {
 
 	@Autowired
-	public TipoLogradouroService tipoLogradouroService;
+	public ObjectService tipoLogradouroService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarTipoLogradouro(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class TipoLogradouroController {
 		ModelAndView mv = new ModelAndView("redirect:/tplog");
 		try {
 			tipoLogradouroService.excluirTipoLogradouro(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Logradouro excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Tipo de Logradouro excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Tipo de Logradouro.");
 		}

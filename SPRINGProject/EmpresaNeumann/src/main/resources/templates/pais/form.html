@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+
+<meta charset="UTF-8">
+
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${mensagem != null}"
+		th:text="${mensagem}"></div>
+	<div class="card">
+		<div class="card-header">
+			<p class="text-primary">Novo País</p>
+		</div>
+		<div class="card-body">
+
+			<form class="row g-3" method="POST" th:object="${pais}"
+				th:action="@{/pais/editar}">
+				<input type="hidden" th:field="*{id}"></input>
+				
+				<div class="col-4">
+					<label for="nome" class="form-label">Descrição</label> <input type="text" class="form-control" 
+						id="inputAddress" placeholder="Brazil" th:field="*{descricao}">
+				</div>
+				
+		
+		
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">Salvar
+						Cadastro</button>
+				</div>
+				
+			</form>
+
+		</div>
+	</div>
+</div>
+</html>

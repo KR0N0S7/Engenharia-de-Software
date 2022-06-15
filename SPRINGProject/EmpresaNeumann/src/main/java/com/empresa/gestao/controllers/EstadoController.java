@@ -13,13 +13,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Estado;
 import com.empresa.gestao.services.EstadoService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("estado")
 public class EstadoController {
 
 	@Autowired
-	public EstadoService estadoService;
+	public ObjectService estadoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarEstado(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class EstadoController {
 		ModelAndView mv = new ModelAndView("redirect:/estado");
 		try {
 			estadoService.excluirEstado(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Estado excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Estado excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Estado.");
 		}

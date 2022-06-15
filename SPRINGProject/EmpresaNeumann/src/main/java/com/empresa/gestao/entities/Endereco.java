@@ -1,42 +1,48 @@
 package com.empresa.gestao.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "enderecos")
 public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private long id;
-	private int cep;
+	private Long id;
+	private String cep;
 	private String logradouro;
-	private int numero;
+	private String numero;
 	private String bairro;
 	private String complemento;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Cidade cidade;
 	
-	@ManyToOne
+//	@ManyToOne
 	private TipoLogradouro tipoLogradouro;
 	
-	@ManyToOne
+//	@ManyToOne
 	private TipoEndereco tipoEndereco;
 	
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
-	public int getCep() {	return cep;	}
-	public void setCep(int cep) {	this.cep = cep;	}
+//	@OneToMany(mappedBy = "endereco")
+//	private List<Fornecedor> fornecedores;
+	
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
+	public String getCep() {	return cep;	}
+	public void setCep(String cep) {	this.cep = cep;	}
 	public String getLogradouro() {	return logradouro;	}
 	public void setLogradouro(String logradouro) {	this.logradouro = logradouro;	}
-	public int getNumero() {		return numero;	}
-	public void setNumero(int numero) {	this.numero = numero;	}
+	public String getNumero() {		return numero;	}
+	public void setNumero(String numero) {	this.numero = numero;	}
 	public String getBairro() {		return bairro;	}
 	public void setBairro(String bairro) {		this.bairro = bairro;	}
 	public String getComplemento() {	return complemento;	}
@@ -47,6 +53,5 @@ public class Endereco {
 	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {	this.tipoLogradouro = tipoLogradouro;	}
 	public TipoEndereco getTipoEndereco() {		return tipoEndereco;	}
 	public void setTipoEndereco(TipoEndereco tipoEndereco) {	this.tipoEndereco = tipoEndereco;	}
-	
 	
 }

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.OrdemServico;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.OrdemServicoService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.OrdemServicoService;
 public class OrdemServicoController {
 
 	@Autowired
-	public OrdemServicoService ordemServicoService;
+	public ObjectService ordemServicoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarOS(@RequestParam(required = false) Long id) {
@@ -57,7 +58,7 @@ public class OrdemServicoController {
 		} else {
 			mv.addObject("os", ordemServico);
 		}
-		redirectAttributes.addFlashAttribute("mensagem", "Ordem de Serviço salvo com sucesso!");
+		redirectAttributes.addFlashAttribute("mensagem", "Ordem de Serviï¿½o salvo com sucesso!");
 		return mv;
 	}
 	
@@ -73,9 +74,9 @@ public class OrdemServicoController {
 		ModelAndView mv = new ModelAndView("redirect:/os");
 		try {
 			ordemServicoService.excluirOrdemServico(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Ordem de Serviço excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Ordem de Serviï¿½o excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Orde de Serviço.");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Orde de Serviï¿½o.");
 		}
 		return mv;
 	}

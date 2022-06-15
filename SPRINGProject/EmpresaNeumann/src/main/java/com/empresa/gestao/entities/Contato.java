@@ -7,19 +7,19 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "contatos")
 public class Contato extends Pessoa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String email;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Departamento departamento;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Fornecedor fornecedor;
 	
 	@ManyToOne
@@ -33,6 +33,6 @@ public class Contato extends Pessoa {
 	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
 	public Telefone getTelefone() {		return telefone;	}
 	public void setTelefone(Telefone telefone) {	this.telefone = telefone;	}
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
 }

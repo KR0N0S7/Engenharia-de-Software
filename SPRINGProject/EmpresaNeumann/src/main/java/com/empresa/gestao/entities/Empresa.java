@@ -2,6 +2,7 @@ package com.empresa.gestao.entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,29 +12,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
-@Entity
+//@Entity
 @Table(name = "empresas")
 public class Empresa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
-	@ManyToMany(mappedBy = "empresas")
-	private List<Fornecedor> fornecedor;
-	
-	@OneToMany(mappedBy = "empresa")
-	private List<OrdemServico> ordemServicos;
-	
+	@Column(name = "tipo_empmresa")
 	private TipoEmpresa tipoEmpresa;
 	
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
-	public List<Fornecedor> getFornecedor() {	return fornecedor;	}
-	public void setFornecedor(List<Fornecedor> fornecedor) {	this.fornecedor = fornecedor;	}
-	public List<OrdemServico> getOrdemServico() {	return ordemServicos;	}
-	public List<OrdemServico> getOrdemServicos() {	return ordemServicos;	}
-	public void setOrdemServicos(List<OrdemServico> ordemServicos) {	this.ordemServicos = ordemServicos;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
 	public TipoEmpresa getTipoEmpresa() {	return tipoEmpresa;	}
 	public void setTipoEmpresa(TipoEmpresa tipoEmpresa) {	this.tipoEmpresa = tipoEmpresa;	}
 	

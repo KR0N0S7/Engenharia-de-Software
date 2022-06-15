@@ -10,26 +10,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "ordens_servicos")
 public class OrdemServico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private long dtInicio;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Empresa empresa;
 	
-	@OneToMany(mappedBy = "ordemServico")
+//	@OneToMany(mappedBy = "ordemServico")
 	private List<Servico> servicos;
 	
-	@ManyToOne
+//	@ManyToOne
 	private Fornecedor fornecedor;
 	
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}	
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}	
 	public long getDtInicio() {	return dtInicio;	}
 	public void setDtInicio(long dtInicio) {	this.dtInicio = dtInicio;	}
 	public Empresa getEmpresa() {	return empresa;	}

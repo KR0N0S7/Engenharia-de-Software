@@ -12,24 +12,24 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.CNAE;
-import com.empresa.gestao.services.CNAEService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("cnae")
 public class CNAEController {
 
 	@Autowired
-	public CNAEService cnaeService;
+	public ObjectService cnaeService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarCNAE(@RequestParam(required = false) Long id) {
 		ModelAndView mv = new ModelAndView("cnae/form.html");
-		CNAE cnae;
+		Object cnae;
 		if(id == null) {
 			cnae = new CNAE();
 		} else {
 			try {
-				cnae = cnaeService.obterCNAE(id);
+				cnae = cnaeService.obterObject(id);
 			} catch (Exception e) {
 				cnae = new CNAE();
 				mv.addObject("mensagem", e.getMessage());
@@ -51,7 +51,7 @@ public class CNAEController {
 		if (cnae == null) {
 			novo = false;
 		} 
-		cnaeService.salvarCNAE(cnae);
+		cnaeService.salvarObject(cnae);
 		if (novo) {
 			mv.addObject("cnae", new CNAE());
 		} else {
@@ -64,7 +64,7 @@ public class CNAEController {
 	@RequestMapping("/listar")
 	public ModelAndView listarCNAEs() {
 		ModelAndView mv = new ModelAndView("cnae/listar.html");
-		mv.addObject("lista", cnaeService.listarCNAEs());
+		mv.addObject("lista", cnaeService.listarObject());
 		return  mv;
 	}
 	
@@ -72,8 +72,8 @@ public class CNAEController {
 	public ModelAndView excluirCNAE(@RequestParam long id, RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView("redirect:/cnae");
 		try {
-			cnaeService.excluirCNAE(id);
-			redirectAttributes.addFlashAttribute("mensagem", "CNAE excluída com sucesso.");
+			cnaeService.excluirObject(id);
+			redirectAttributes.addFlashAttribute("mensagem", "CNAE excluï¿½da com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir CANE.");
 		}

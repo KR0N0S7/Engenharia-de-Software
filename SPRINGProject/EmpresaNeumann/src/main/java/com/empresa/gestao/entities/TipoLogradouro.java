@@ -9,27 +9,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
+//@Entity
 @Table(name = "tipos_logradouros")
 public class TipoLogradouro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	private String nome;
 	private String descricao;
 	
-	@OneToMany(mappedBy = "tipoLogradouro")
-	private List<Endereco> enderecos;
+//	@OneToMany(mappedBy = "tipoLogradouro")
+//	private List<Endereco> endereco;
 	
-	public long getId() {	return id;	}
-	public void setId(long id) {	this.id = id;	}
+	public Long getId() {	return id;	}
+	public void setId(Long id) {	this.id = id;	}
 	public String getNome() {	return nome;	}
 	public void setNome(String nome) {		this.nome = nome;	}
 	public String getDescricao() {		return descricao;	}
 	public void setDescricao(String descricao) {	this.descricao = descricao;	}
-	public List<Endereco> getEnderecos() {	return enderecos;	}
-	public void setEnderecos(List<Endereco> enderecos) {	this.enderecos = enderecos;	}
-	
-	
 }

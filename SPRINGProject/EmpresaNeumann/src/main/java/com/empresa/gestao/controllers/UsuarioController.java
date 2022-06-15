@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Usuario;
+import com.empresa.gestao.services.ObjectService;
 import com.empresa.gestao.services.UsuarioService;
 
 @Controller
@@ -19,7 +20,7 @@ import com.empresa.gestao.services.UsuarioService;
 public class UsuarioController {
 
 	@Autowired
-	public UsuarioService usuarioService;
+	public ObjectService usuarioService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarUsuario(@RequestParam(required = false) Long id) {
@@ -73,9 +74,9 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("redirect:/usuario");
 		try {
 			usuarioService.excluirUsuario(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Usuário excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Usuï¿½rio excluï¿½do com sucesso.");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Usuário.");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Usuï¿½rio.");
 		}
 		return mv;
 	}

@@ -13,13 +13,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.entities.Departamento;
 import com.empresa.gestao.services.DepartamentoService;
+import com.empresa.gestao.services.ObjectService;
 
 @Controller
 @RequestMapping("departamento")
 public class DepartamentoController {
 
 	@Autowired
-	public DepartamentoService departamentoService;
+	public ObjectService departamentoService;
 		
 	@RequestMapping("editar")
 	public ModelAndView salvarDepartamento(@RequestParam(required = false) Long id) {
@@ -73,7 +74,7 @@ public class DepartamentoController {
 		ModelAndView mv = new ModelAndView("redirect:/departamento");
 		try {
 			departamentoService.excluirDepartamento(id);
-			redirectAttributes.addFlashAttribute("mensagem", "Departamento excluído com sucesso.");
+			redirectAttributes.addFlashAttribute("mensagem", "Departamento excluï¿½do com sucesso.");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("mensagem", "Erro ao excluir Departamento.");
 		}
