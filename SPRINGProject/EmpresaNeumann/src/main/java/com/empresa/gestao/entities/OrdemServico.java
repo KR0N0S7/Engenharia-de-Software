@@ -2,15 +2,11 @@ package com.empresa.gestao.entities;
 
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "ordens_servicos")
 public class OrdemServico {
 
@@ -19,13 +15,10 @@ public class OrdemServico {
 	private Long id;
 	private long dtInicio;
 	
-//	@ManyToOne
 	private Empresa empresa;
 	
-//	@OneToMany(mappedBy = "ordemServico")
 	private List<Servico> servicos;
 	
-//	@ManyToOne
 	private Fornecedor fornecedor;
 	
 	public Long getId() {	return id;	}
@@ -38,5 +31,4 @@ public class OrdemServico {
 	public void setServicos(List<Servico> servicos) {	this.servicos = servicos;	}
 	public Fornecedor getFornecedor() {	return fornecedor;	}
 	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
-	
 }

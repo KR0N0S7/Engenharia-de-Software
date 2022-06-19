@@ -27,7 +27,7 @@ import com.empresa.gestao.dao.sql.SqlGenerator;
 public class DAO implements IDAO {
 
 	@Override
-	public void salvar(Object objeto) throws SQLException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+	public void salvar(Object objeto) throws SQLException {
 		
 		String nomeTabela = SqlGenerator.gerarSQL(objeto);
 		
@@ -87,7 +87,11 @@ public class DAO implements IDAO {
 				Id id = atributo.getDeclaredAnnotation(Id.class);
 				if (null == id) {
 					atributo.setAccessible(true);
-					psql.setObject(i++, atributo.get(objeto));
+					try {
+						psql.setObject(i++, atributo.get(objeto));
+					} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+						throw new RuntimeException();
+					}
 				}
 			}
 		}
@@ -97,7 +101,7 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public void alterar(Long id, Object objeto) throws SQLException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException, SecurityException {
+	public void alterar(Long id, Object objeto) throws SQLException {
 		
 		String nomeTabela = SqlGenerator.gerarSQL(objeto);
 		
@@ -161,7 +165,11 @@ public class DAO implements IDAO {
 			
 			if (mTm == null && oTm == null) {
 				atributo.setAccessible(true);
-				psql.setObject(i++, atributo.get(objeto));
+				try {
+					psql.setObject(i++, atributo.get(objeto));
+				} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+					throw new RuntimeException();
+				}
 			}
 		}
 		psql.execute();
@@ -170,20 +178,20 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public void excluir(Object objeto) throws NoSuchFieldException, SecurityException, SQLException, IllegalArgumentException, IllegalAccessException {
+	public void excluir(Long id, Object objeto) throws SQLException {
 		
 		String nomeTabela = SqlGenerator.gerarSQL(objeto);
 		
-		String sql = "DELETE FROM " + nomeTabela + " WHERE id=?";
+		String sql = "DELETE FROM " + nomeTabela + " WHERE id=" + id;
 		
 		Connection conexao = ConexaoDB.getConexao();
 		PreparedStatement psql = conexao.prepareStatement(sql);
 		
-		Field id = objeto
-				.getClass()
-				.getDeclaredField("id");
-		id.setAccessible(true);
-		psql.setObject(1, id.get(objeto));
+//		Field id = objeto
+//				.getClass()
+//				.getDeclaredField("id");
+//		id.setAccessible(true);
+//		psql.setObject(1, id.get(objeto));
 		
 		psql.execute();
 		conexao.close();
@@ -191,9 +199,16 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public Object listar(Class<?> clazz) throws SQLException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException, NoSuchMethodException, SecurityException {
+	public Object listar(Class<?> clazz) throws SQLException {
 				
-		Object objeto = clazz.getConstructor().newInstance();
+		Object objeto;
+		try {
+			objeto = clazz.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | 
+				IllegalArgumentException | InvocationTargetException | 
+				NoSuchMethodException | SecurityException e1) {
+			throw new RuntimeException();
+		}
 		
 		String nomeTabela = SqlGenerator.gerarSQL(objeto);
 		
@@ -207,9 +222,11 @@ public class DAO implements IDAO {
 		Object lista = null;
 		try {
 			
-			lista = Conversor.mapper(clazz, resultado);
+			lista = Conversor.resultSetToList(clazz, resultado);
 		} catch (SecurityException |
-				IllegalArgumentException e) {
+				IllegalArgumentException | IllegalAccessException | 
+				InstantiationException | InvocationTargetException | 
+				NoSuchMethodException e) {
 			e.printStackTrace();
 		}
 		
@@ -220,9 +237,16 @@ public class DAO implements IDAO {
 	}
 
 	@Override
-	public Object consultarPorId(Long id, Class<?> clazz) throws SQLException, IllegalAccessException, InvocationTargetException, InstantiationException, IllegalArgumentException, NoSuchMethodException, SecurityException {
+	public Object consultarPorId(Long id, Class<?> clazz) throws SQLException {
 		
-		Object objeto = clazz.getConstructor().newInstance();
+		Object objeto;
+		try {
+			objeto = clazz.getConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException | 
+				IllegalArgumentException | InvocationTargetException | 
+				NoSuchMethodException | SecurityException e1) {
+			throw new RuntimeException();
+		}
 		
 		String nomeTabela = SqlGenerator.gerarSQL(objeto);
 		
@@ -235,9 +259,9 @@ public class DAO implements IDAO {
 		
 		try {
 			
-			objeto = Conversor.construtorMaker(objeto, resultado);
+			objeto = Conversor.resultSetToObject(objeto, resultado);
 		} catch (SecurityException |
-				IllegalArgumentException e) {
+				IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();
 		}	
 		

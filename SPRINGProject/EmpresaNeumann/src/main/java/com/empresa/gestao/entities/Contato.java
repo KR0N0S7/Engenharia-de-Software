@@ -1,13 +1,10 @@
 package com.empresa.gestao.entities;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "contatos")
 public class Contato extends Pessoa {
 	
@@ -16,13 +13,10 @@ public class Contato extends Pessoa {
 	private Long id;
 	private String email;
 	
-//	@ManyToOne
 	private Departamento departamento;
 	
-//	@ManyToOne
 	private Fornecedor fornecedor;
 	
-	@ManyToOne
 	private Telefone telefone;
 	
 	public String getEmail() {	return email;	}

@@ -1,15 +1,10 @@
 package com.empresa.gestao.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "cnaes")
 public class CNAE {
 		
@@ -26,5 +21,4 @@ public class CNAE {
 	public void setId(Long id) {	this.id = id;	}
 	public Fornecedor getFornecedor() {	return fornecedor;	}
 	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
-	
 }

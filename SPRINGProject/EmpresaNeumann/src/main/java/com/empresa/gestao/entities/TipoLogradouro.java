@@ -1,15 +1,10 @@
 package com.empresa.gestao.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "tipos_logradouros")
 public class TipoLogradouro {
 
@@ -18,9 +13,6 @@ public class TipoLogradouro {
 	private Long id;
 	private String nome;
 	private String descricao;
-	
-//	@OneToMany(mappedBy = "tipoLogradouro")
-//	private List<Endereco> endereco;
 	
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}

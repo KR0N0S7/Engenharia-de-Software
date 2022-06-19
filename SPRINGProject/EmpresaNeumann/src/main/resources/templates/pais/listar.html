@@ -26,9 +26,9 @@
 					<td th:text="${pais.descricao}"></td>
 					
 					<td width="132"><a class="btn btn-primary btn-sm"
-						th:href="@{/pais/editar(id=${pais.id})}">Editar</a> <a
+						th:href="@{/pais/form(id=${pais.id})}">Editar</a> <a
 						class="btn btn-primary btn-sm"
-						th:ref="@{/pais/excluir(id=${pais.id})}"
+						th:href="@{/pais/excluir(id=${pais.id})}"
 						onclick="return confirm('Você realmente deseja excluir esse país?')">Excluir</a></td>
 				</tr>
 			</tbody>

@@ -1,16 +1,10 @@
 package com.empresa.gestao.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "telefones")
 public class Telefone {
 
@@ -21,13 +15,8 @@ public class Telefone {
 	private String numero;
 	private String ddi;
 	
-//	@OneToMany(mappedBy = "telefone")
-//	private List<Contato> contatos;
-	
-//	@ManyToOne
 	private Fornecedor fornecedor;
 	
-//	@ManyToOne
 	private TipoTelefone tipoTelefone;
 	
 	public String getDdd() {	return ddd;	}
@@ -42,6 +31,4 @@ public class Telefone {
 	public void setTipoTelefone(TipoTelefone tipoTelefone) {	this.tipoTelefone = tipoTelefone;	}
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}
-//	public List<Contato> getContato() {		return contatos;	}
-//	public void setContato(List<Contato> contatos) {	this.contatos = contatos;	}
 }

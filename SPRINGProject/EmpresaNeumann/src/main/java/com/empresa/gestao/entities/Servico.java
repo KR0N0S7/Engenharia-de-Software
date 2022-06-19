@@ -1,16 +1,10 @@
 package com.empresa.gestao.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "servicos")
 public class Servico {
 
@@ -19,10 +13,8 @@ public class Servico {
 	private Long id;
 	private String descricao;
 	
-//	@ManyToOne
 	private OrdemServico ordemServico;
 	
-//	@ManyToMany(mappedBy = "servicosOfertados")
 	private Fornecedor fornecedor;
 	
 	public Long getId() {	return id;	}

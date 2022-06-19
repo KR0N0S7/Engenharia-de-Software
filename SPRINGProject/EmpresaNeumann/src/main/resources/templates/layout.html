@@ -9,6 +9,22 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+</style>
 </head>
 <body>
 	<div id="menu">
@@ -32,30 +48,63 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Fornecedor </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/fornecedor/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/fornecedor/form}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/fornecedor/listar}">Listar</a></li>
 							</ul></li>
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Tipo </a>
-							<ul class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar Logradouro</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar Endereço</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar Logradouro</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar Endereço</a></li>
-							</ul></li>
 						
+					
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Endereço </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/local/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/local/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/endereco/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/endereco/listar}">Listar</a></li>
 							</ul></li>
+							
+							<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Tipo </a>
+    <ul class="dropdown-menu">
+      
+      <li class="dropdown-submenu">
+        <a class="test" tabindex="-1" href="#"> Logradouro <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" th:href="@{/departamento/editar}">Cadastrar</a></li>
+          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li class="dropdown-submenu">
+            
+            
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a class="test" tabindex="-1" href="#"> Endereço <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="#">Cadastrar</a></li>
+          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li class="dropdown-submenu">
+            
+            
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a class="test" tabindex="-1" href="#"> Telefone <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="#">Cadastrar</a></li>
+          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li class="dropdown-submenu">
+            
+            
+          </li>
+        </ul>
+      </li>
+      
+    </ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -65,6 +114,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -74,15 +124,17 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> País </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/pais/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/pais/form}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/pais/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -92,6 +144,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -101,6 +154,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -110,6 +164,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -119,6 +174,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -128,6 +184,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
@@ -137,12 +194,75 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
 							</ul></li>
+							
+							<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Usuário </a>
+							<ul class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+							</ul></li>
+							
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Empresa </a>
+    <ul class="dropdown-menu">
+      
+      <li class="dropdown-submenu">
+        <a class="test" tabindex="-1" href="#"> Serviço <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" th:href="@{/departamento/editar}">Cadastrar</a></li>
+          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li class="dropdown-submenu">
+            
+            
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu">
+        <a class="test" tabindex="-1" href="#"> Ordem de Serviço <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a tabindex="-1" href="#">Cadastrar</a></li>
+          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li class="dropdown-submenu">
+            
+            
+          </li>
+        </ul>
+      </li>
+      
+      
+    </ul></li>
+						
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#"
+							id="navbarDropdownMenuLink" role="button"
+							data-bs-toggle="dropdown" aria-expanded="false"> Produto </a>
+							<ul class="dropdown-menu"
+								aria-labelledby="navbarDropdownMenuLink">
+								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+							</ul></li>
+						
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</div>
 	<div id="conteudo" class="container" layout:fragment="content"></div>
+	
+	<script>
+$(document).ready(function(){
+  $('.dropdown-submenu a.test').on("click", function(e){
+    $(this).next('ul').toggle();
+    e.stopPropagation();
+    e.preventDefault();
+  });
+});
+</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

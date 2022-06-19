@@ -20,7 +20,6 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 
-//@Entity
 @Table(name = "fornecedores")
 public class Fornecedor {
 	
@@ -59,81 +58,6 @@ public class Fornecedor {
 	@ChaveEstrangeira
 	private Endereco endereco;
 	
-//	@ManyToMany
-//	@JoinTable(
-//			name = "classificacao_fornecedores",
-//			joinColumns = @JoinColumn(name = "fornecedor_id"),
-//			inverseJoinColumns = @JoinColumn(name = "cnae_id"))
-//	private List<CNAE> cnaes;
-//	
-//	@ManyToMany
-//	@JoinTable(
-//			name = "relacao_trabalho",
-//			joinColumns = @JoinColumn(name = "fornecedor_id"),
-//			inverseJoinColumns = @JoinColumn(name = "empresa_id"))
-//	private List<Empresa> empresas;
-//	
-//	@OneToMany(mappedBy = "fornecedor")
-//	@Column(name = "ordem_servicos")
-//	private List<OrdemServico> ordemServicos;
-//	
-//	@ManyToMany
-//	@JoinTable(
-//			name = "fornecimento_servicos",
-//			joinColumns = @JoinColumn(name = "fornecedor_id"),
-//			inverseJoinColumns = @JoinColumn(name = "servico_id"))
-//	private List<Servico> servicosOfertados;
-//	
-//	@OneToMany(mappedBy = "fornecedor")
-//	private List<Produto> produtosOfertados;
-//	
-//	@OneToMany(mappedBy = "fornecedor")
-//	private List<Contato> contatos;
-//	
-//	@OneToMany(mappedBy = "fornecedor")
-//	private List<Telefone> telefones;
-//	
-//	private List<TipoFornecimento> tipoFornecimento;
-//	private Status status;
-//	
-//	public boolean isRascunho() {	return isRascunho;	}
-//	public void setRascunho(boolean isRascunho) {	this.isRascunho = isRascunho;	}
-
-	
-	public Fornecedor() {
-	}
-	
-	
-	
-	public Fornecedor(String email, String cnpj, String inscricaoEstadual, String inscricaoMunicipal, long dtCadastro,
-		String rzSocial, String nmFantasia) {
-		this.email = email;
-		this.cnpj = cnpj;
-		this.inscricaoEstadual = inscricaoEstadual;
-		this.inscricaoMunicipal = inscricaoMunicipal;
-		this.dtCadastro = dtCadastro;
-		this.rzSocial = rzSocial;
-		this.nmFantasia = nmFantasia;
-	}
-	
-	
-
-
-	public Fornecedor(Long id, String cnpj, long dtCadastro, String email, String inscricaoEstadual,
-			String inscricaoMunicipal, String nmFantasia, String rzSocial, Endereco endereco) {
-		this.id = id;
-		this.cnpj = cnpj;
-		this.dtCadastro = dtCadastro;
-		this.email = email;
-		this.inscricaoEstadual = inscricaoEstadual;
-		this.inscricaoMunicipal = inscricaoMunicipal;
-		this.nmFantasia = nmFantasia;
-		this.rzSocial = rzSocial;
-		this.endereco = endereco;
-	}
-
-
-
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}
 	public String getEmail() {	return email;	}
@@ -157,28 +81,6 @@ public class Fornecedor {
 	public TipoFornecimento getTipoFornecimento() {	return tipoFornecimento;	}
 	public void setTipoFornecimento(TipoFornecimento tipoFornecimento) {	this.tipoFornecimento = tipoFornecimento;	}
 	
-//	public List<CNAE> getCnaes() {	return cnaes;	}
-//	public void setCnaes(List<CNAE> cnae) {	this.cnaes = cnae;	}
-//	public List<Empresa> getEmpresas() {	return empresas;	}
-//	public void setEmpresas(List<Empresa> empresas) {	this.empresas = empresas;	}
-//	public List<OrdemServico> getOrdemServicos() {	return ordemServicos;	}
-//	public void setOrdemServicos(List<OrdemServico> ordemServicos) {	this.ordemServicos = ordemServicos;	}
-//	public List<Servico> getServicosOfertados() {	return servicosOfertados;	}
-//	public void setServicosOfertados(List<Servico> servicos) {	this.servicosOfertados = servicos;	}
-//	public List<Produto> getProdutosOfertados() {	return produtosOfertados;	}
-//	public void setProdutosOfertados(List<Produto> produtos) {	this.produtosOfertados = produtos;	}
-//	public List<Contato> getContatos() {	return contatos;	}
-//	public void setContatos(List<Contato> contatos) {	this.contatos = contatos;	}
-//	public List<Telefone> getTelefones() {	return telefones;	}
-//	public void setTelefones(List<Telefone> telefones) {	this.telefones = telefones;	}
-	
-//	public List<TipoFornecimento> getTipoFornecimento() {	return tipoFornecimento;	}
-//	public void setTipoFornecimento(List<TipoFornecimento> tipoFornecimento) {	this.tipoFornecimento = tipoFornecimento;	}
-//	public Status getStatus() {		return status;	}
-//	public void setStatus(Status status) {	this.status = status;	}
-//	public Status getStatus() {	return status;	}
-//	public void setStatus(Status status) {	this.status = status;	}
-//	
 //	public void salvar() {
 //		
 //	}

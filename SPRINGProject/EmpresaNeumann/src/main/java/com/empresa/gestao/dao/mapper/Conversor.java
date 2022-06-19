@@ -10,9 +10,7 @@ import java.util.List;
 
 public class Conversor {
 
-	//////Arrumar controllers
-	//////
-	public static List<Object> mapper(Class<?> clazz, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public static List<Object> resultSetToList(Class<?> clazz, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		
 		ResultSetMetaData metaDados = resultado.getMetaData();
 		List<Object> lista = new ArrayList<>();
@@ -37,13 +35,15 @@ public class Conversor {
 		return lista;
 	}
 	
-	public static Object construtorMaker(Object objeto, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException {
+	public static Object resultSetToObject(Object objeto, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException {
+		
+		ResultSetMetaData metaDados = resultado.getMetaData();
 		
 		while (resultado.next()) {
 			int n = 1;
 			for (Field field : objeto.getClass().getDeclaredFields()) {
 				field.setAccessible(true);
-				field.set(objeto, resultado.getObject(n));
+				field.set(objeto, resultado.getObject(metaDados.getColumnLabel(n)));
 				n++;
 			}
 		}

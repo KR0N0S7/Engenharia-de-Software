@@ -33,7 +33,7 @@ public class ObjectService {
 		dao.alterar(id, obj);
 	}
 
-	public void excluirObject(Long id) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, SQLException {
-		dao.excluir(id);
+	public void excluirObject(Long id, Object objeto) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, SQLException {
+		dao.excluir(id, objeto);
 	}
 }

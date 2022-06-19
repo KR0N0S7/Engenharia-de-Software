@@ -1,16 +1,10 @@
 package com.empresa.gestao.entities;
 
-import java.util.List;
-
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
 @Table(name = "enderecos")
 public class Endereco {
 
@@ -23,17 +17,11 @@ public class Endereco {
 	private String bairro;
 	private String complemento;
 	
-//	@ManyToOne
 	private Cidade cidade;
 	
-//	@ManyToOne
 	private TipoLogradouro tipoLogradouro;
 	
-//	@ManyToOne
 	private TipoEndereco tipoEndereco;
-	
-//	@OneToMany(mappedBy = "endereco")
-//	private List<Fornecedor> fornecedores;
 	
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}
@@ -53,5 +41,4 @@ public class Endereco {
 	public void setTipoLogradouro(TipoLogradouro tipoLogradouro) {	this.tipoLogradouro = tipoLogradouro;	}
 	public TipoEndereco getTipoEndereco() {		return tipoEndereco;	}
 	public void setTipoEndereco(TipoEndereco tipoEndereco) {	this.tipoEndereco = tipoEndereco;	}
-	
 }

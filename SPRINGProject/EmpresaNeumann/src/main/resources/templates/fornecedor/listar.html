@@ -24,6 +24,7 @@
 					<th>Inscrição Municipal</th>
 					<th>E-Mail</th>
 					<th>Data Cadastro</th>
+					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -37,7 +38,7 @@
 					<td th:text="${fornecedor.email}"></td>
 					<td th:text="${fornecedor.dtCadastro}"></td>
 					<td width="auto"><a class="btn btn-primary btn-sm"
-						th:href="@{/fornecedor/editar(id=${fornecedor.id})}">Editar</a> <a
+						th:href="@{/fornecedor/form(id=${fornecedor.id})}">Editar</a> <a
 						class="btn btn-primary btn-sm"
 						th:href="@{/fornecedor/excluir(id=${fornecedor.id})}"
 						onclick="return confirm('Você realmente deseja excluir esse fornecedor?')">Excluir</a></td>
