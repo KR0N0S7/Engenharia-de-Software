@@ -20,7 +20,7 @@ import com.empresa.gestao.dao.annotations.Transiente;
 import com.empresa.gestao.dao.mapper.Conversor;
 import com.empresa.gestao.dao.sql.NameGeneratorSQL;
 
-public class AbstractDAO implements IDAO {
+public class AbstractDAO implements InterfaceDAO {
 
 	@Override
 	public void salvar(Object objeto) throws SQLException {
@@ -257,7 +257,7 @@ public class AbstractDAO implements IDAO {
 			
 			objeto = Conversor.resultSetToObject(objeto, resultado);
 		} catch (SecurityException |
-				IllegalArgumentException | IllegalAccessException e) {
+				IllegalArgumentException e) {
 			e.printStackTrace();
 		}	
 		
@@ -267,6 +267,7 @@ public class AbstractDAO implements IDAO {
 		return objeto;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static Object consultarUltimaEntrada(String nome) throws SQLException {
 		nome = nome.substring(0,1).toUpperCase().concat(nome.substring(1));
 		String pacote = "com.empresa.gestao.entities." + nome;
@@ -278,24 +279,22 @@ public class AbstractDAO implements IDAO {
 		}
 		String nomeTabela = NameGeneratorSQL.gerarNomeTabelaSQL(objeto);
 		
-		String sql = "SELECT MAX(id) FROM " + nomeTabela;
+		String sql = "SELECT MAX(id) as numero FROM " + nomeTabela;
 		
 		Connection conexao = ConexaoDB.getConexao();
 		PreparedStatement psql = conexao.prepareStatement(sql);
 				
 		ResultSet resultado = psql.executeQuery();
 		
-		try {
-			objeto = Conversor.resultSetToObject(objeto, resultado);
-		} catch (SecurityException |
-				IllegalArgumentException | IllegalAccessException e) {
-			e.printStackTrace();
-		}	
+		Object numeroId = null;
+		
+		if (resultado.next()) {
+			numeroId = resultado.getLong("numero");
+		}
 		
 		conexao.close();
-		System.out.println(sql);
 		
-		return objeto;
+		return numeroId;
 	}
 	
 	public void salvarObjectHandler(Object objeto) throws SQLException {
@@ -365,11 +364,11 @@ public class AbstractDAO implements IDAO {
 					ChaveEstrangeira chaveEstrangeira = atributo.getDeclaredAnnotation(ChaveEstrangeira.class);
 					if (chaveEstrangeira != null) {
 						String nomeAtributo = atributo.getName();
-						Object ultimaEntrada = AbstractDAO.consultarUltimaEntrada(nomeAtributo);
+						Long ultimaEntrada = (Long) AbstractDAO.consultarUltimaEntrada(nomeAtributo);
 						
 						try {
-							psql.setObject(i++, ultimaEntrada.getClass().getDeclaredField("id"));
-						} catch (NoSuchFieldException | SecurityException | SQLException e) {
+							psql.setObject(i++, ultimaEntrada);
+						} catch (SecurityException | SQLException e) {
 							e.printStackTrace();
 						}
 					} else {
@@ -387,5 +386,23 @@ public class AbstractDAO implements IDAO {
 		psql.execute();
 		conexao.close();
 		System.out.println(sql);
+	}
+	
+	public static Object listarObjetoEspecifico(String coluna, String tabela) throws SQLException {
+		
+		
+		String sql = "SELECT " + coluna + " FROM " + tabela;
+		
+		Connection conexao = ConexaoDB.getConexao();
+		PreparedStatement psql = conexao.prepareStatement(sql);
+		
+		ResultSet resultado = psql.executeQuery();
+			
+		Object listaAtributos = Conversor.resultSetToAtributeList(resultado);
+		
+		conexao.close();
+		System.out.println(sql);
+		
+		return listaAtributos;
 	}
 }

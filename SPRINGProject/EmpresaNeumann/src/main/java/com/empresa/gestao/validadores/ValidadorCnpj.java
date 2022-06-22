@@ -1,15 +1,17 @@
 package com.empresa.gestao.validadores;
 
-import com.empresa.gestao.entities.Fornecedor;
+import com.empresa.gestao.object_handler.ObjetoHandler;
 
-public class ValidadorCnpj implements IStrategy {
+public class ValidadorCnpj implements InterfaceStrategy {
 
 	public String processar(Object entidade) {
-		Fornecedor fornecedor = (Fornecedor)entidade;
-		String cnpj = fornecedor.getCnpj().replace("-", "").replace(".", "").replace("/", "");
+		
+		ObjetoHandler objeto = (ObjetoHandler) entidade;
+		
+		String cnpj = objeto.getCnpj().replace("-", "").replace(".", "").replace("/", "");
 				
 		if(cnpj == null || cnpj.length()!=14){
-			return "CPNJ inválido<br/>";
+			return "CPNJ inválido.";
 		}else {
 			return null;
 		}

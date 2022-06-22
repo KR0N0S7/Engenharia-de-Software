@@ -1,58 +1,50 @@
 package com.empresa.gestao.validadores;
 
-import com.empresa.gestao.entities.Endereco;
+import com.empresa.gestao.object_handler.ObjetoHandler;
 
-public class ValidadorEndereco implements IStrategy {
+public class ValidadorEndereco implements InterfaceStrategy {
 	
 	public String processar(Object entidade) {
 		
-		Endereco endereco = (Endereco)entidade;
-		String tipoEndereco = endereco.getTipoEndereco().toString();
-		String tipoLogradouro = endereco.getTipoLogradouro().toString();
-		String logradouro = endereco.getLogradouro();
-		String numero = endereco.getNumero();
-		String bairro = endereco.getBairro();
-		String cidade = endereco.getCidade().toString();
-		String estado = endereco.getCidade().getEstado().toString();
-		String pais = endereco.getCidade().getEstado().getPais().toString();
-		String cep = endereco.getCep();
+		ObjetoHandler objeto = (ObjetoHandler)entidade;
 		
-		if ( tipoEndereco  == null || tipoEndereco.isBlank()){
-			return "Tipo do endereço obrigatório<br/>";
-		}
-		
-		if ( tipoLogradouro== null ||tipoLogradouro.isBlank()) {
-			return "Tipo do logradouro obrigatório<br/>";	
-		}
+		String logradouro = objeto.getLogradouro();
+		String numero = objeto.getNumero();
+		String bairro = objeto.getBairro();
+		String cidade = objeto.getDescricaoCidade();
+		String estado = objeto.getDescricaoEstado();
+		String pais = objeto.getDescricaoPais();
+		String cep = objeto.getCep();
 		
 		if (logradouro == null || logradouro.isBlank()) {
-			return "Logradouro obrigatório<br/>";	
+			return "Logradouro obrigatório";	
 		}
 		
 		if (numero == null) {
-			return "Número obrigatório<br/>";	
+			return "Número obrigatório";	
 		}
 
 		if (bairro == null || bairro.isBlank()) {
-			return "Bairro obrigatório<br/>";	
+			return "Bairro obrigatório";	
 		}
 		
 		if (cidade == null|| cidade.isBlank()) {
-			return "Cidade obrigatória<br/>";	
+			return "Cidade obrigatória";	
 		}
 
 		if (estado == null || estado.isBlank()) {
-			return "Estado obrigat�rio<br/>";	
+			return "Estado obrigatório";	
 		}
 		
 		if (pais == null || pais.isBlank()) {
-			return "País obrigatório<br/>";	
+			return "País obrigatório";	
 		}
 
 		if (cep == null) {
-			return "CEP obrigatório<br/>";	
-		} else {
-			return null;
-		}
+			return "CEP obrigatório";	
+		} 
+		
+		return null;
+		
 	}
 }

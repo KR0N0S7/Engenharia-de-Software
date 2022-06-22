@@ -1,33 +1,26 @@
 package com.empresa.gestao.validadores;
 
+import java.sql.SQLException;
 import java.util.List;
 
-import com.empresa.gestao.dao.DAO;
-import com.empresa.gestao.entities.Fornecedor;
+import com.empresa.gestao.dao.AbstractDAO;
+import com.empresa.gestao.object_handler.ObjetoHandler;
 
-public class VerificarUnicidadeCnpj implements IStrategy {
+public class VerificarUnicidadeCnpj implements InterfaceStrategy {
 
-	public String processar(Object entidade) {
-		String verificaDado = new String();
-		Fornecedor fornecedorAnalisado = (Fornecedor)entidade;
-		Fornecedor cnpj = new Fornecedor();
+	public String processar(Object entidade) throws SQLException {
 		
-		cnpj.setPesquisa(fornecedorAnalisado.getCnpj().toString());
-		List<Object> fornecedoresDoBanco = new DAO().consultar(cnpj);
+		ObjetoHandler objeto = (ObjetoHandler)entidade;
+		String cnpjObjeto = objeto.getCnpj();
 		
-		for(Object fornecedores : fornecedoresDoBanco) {
-			Fornecedor f = (Fornecedor) fornecedores;
-			if(f.getCnpj().equals(fornecedorAnalisado.getCnpj())) {
-				verificaDado = "Cnpj já existe.<br/>";	
-				break;
-			}
+		@SuppressWarnings("unchecked")
+		List<String> listaCnpj = (List<String>) AbstractDAO.listarObjetoEspecifico("cnpj", "fornecedores");
+		
+		if (listaCnpj.contains(cnpjObjeto)) {
+			return "Cnpj já existe.";	
 		}
 			
-		if (verificaDado != "") {
-			return verificaDado;
-		}else{
-			return null;
-		}
+		return null;
 	}
 
 }

@@ -9,53 +9,31 @@
 
 	<div class="card">
 		<div class="card-header">
-			<p class="text-primary">Novo Fornecedor</p>
+			<p class="text-primary">Nova Cidade</p>
 		</div>
 		<div>
 			<div class="card-body">
-				<form class="row g-3" method="POST" th:object="${fornecedor}"
-					th:action="@{/fornecedor/form}">
+				<form class="row g-3" method="POST" th:object="${cidade}"
+					th:action="@{/cidade/form}">
 					<input type="hidden" th:field="*{id}"></input>
 
-					<div class="col-4">
-						<label for="nome" class="form-label">Razão Social </label> <input
-							type="text" class="form-control" th:field="*{rzSocial}"
+					<div class="col-6">
+						<label for="nome" class="form-label">Descrição </label> <input
+							type="text" class="form-control" th:field="*{descricao}"
 							placeholder="">
 					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Nome Fantasia </label> <input
-							type="text" class="form-control" th:field="*{nmFantasia}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">CNPJ </label> <input
-							type="text" class="form-control" th:field="*{cnpj}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Estadual </label> <input
-							type="text" class="form-control" th:field="*{inscricaoEstadual}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Municipoal
-						</label> <input type="text" class="form-control"
-							th:field="*{inscricaoMunicipal}" placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">E-Mail </label> <input
-							type="text" class="form-control" th:field="*{email}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Data Cadastro </label> <input
-							type="text" class="form-control" th:field="*{dtCadastro}"
-							placeholder="">
-					</div>
-
-					<div class="rom-row">
+					
+					
+					<div class="col-6">
+							<label for="nome" class="form-label">Estado</label> <select
+								class="form-select" th:field="*{estado}">
+								<option th:each="estado : ${Estado}"
+									th:value="${estado.id}" 
+									th:text=${estado.descricao} />
+							</select>
 						
 					</div>
+					
 
 				<div class="col-md-2">
 					<button type="submit" class="btn btn-primary">Salvar

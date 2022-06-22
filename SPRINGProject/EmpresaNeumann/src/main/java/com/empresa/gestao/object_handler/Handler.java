@@ -1,10 +1,7 @@
 package com.empresa.gestao.object_handler;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,9 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.empresa.gestao.command.ICommand;
 import com.empresa.gestao.command.SalvarCommand;
-import com.empresa.gestao.fachada.ResultadoFachada;
-import com.empresa.gestao.services.ObjectService;
-import com.empresa.gestao.services.ObjectSuperService;
 
 @Controller
 @RequestMapping("vh")
@@ -36,7 +30,17 @@ public class Handler {
 		ICommand comandoSalvar = new SalvarCommand();
 		Object lista = comandoSalvar.executar(objeto);
 		
-		mv.addObject("lista", lista);
+		
+		if (lista.getClass().getDeclaredFields().length < 7) {
+			
+			mv.addObject("lista", lista);
+			
+		} else {
+
+			mv.addObject("mensagem", lista);
+			
+		}
+		
 		return mv;
 	}
 }

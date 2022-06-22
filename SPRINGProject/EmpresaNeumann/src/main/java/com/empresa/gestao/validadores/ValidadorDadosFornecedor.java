@@ -1,35 +1,37 @@
 package com.empresa.gestao.validadores;
 
-import com.empresa.gestao.entities.Fornecedor;
+import com.empresa.gestao.object_handler.ObjetoHandler;
 
-public class ValidadorDadosFornecedor implements IStrategy {
+public class ValidadorDadosFornecedor implements InterfaceStrategy {
 
 	public String processar(Object entidade) {
-		Fornecedor fornecedor = (Fornecedor)entidade;
-		String cnpj = fornecedor.getCnpj();
-		String razaoSocial = fornecedor.getRzSocial();
-		String nomeFantasia = fornecedor.getNmFantasia();
-		String inscMun = fornecedor.getInscricaoMunicipal();
-		String inscEst = fornecedor.getInscricaoEstadual();
+		
+		ObjetoHandler objeto = (ObjetoHandler)entidade;
+		
+		String cnpj = objeto.getCnpj();
+		String razaoSocial = objeto.getRzSocial();
+		String nomeFantasia = objeto.getNmFantasia();
+		String inscricaoMunicipal = objeto.getInscricaoMunicipal();
+		String inscricaoEstadual = objeto.getInscricaoEstadual();
 		
 		if (cnpj == null || cnpj.isBlank()) {
-			return "CNPJ obrigatório<br/>";	
+			return "CNPJ obrigatório";	
 		}
 		
 		if (razaoSocial  == null || razaoSocial.isBlank()) {
-			return "Razão social obrigatório<br/>";	
+			return "Razão social obrigatório";	
 		}
 		
 		if (nomeFantasia == null || nomeFantasia.isBlank()) {
-			return "Nome Fantasia obrigatório<br/>";	
+			return "Nome Fantasia obrigatório";	
 		}
 		
-		if (inscMun == null || inscMun.isBlank()) {
-			return "Inscrição Municipal obrigatório<br/>";	
+		if (inscricaoMunicipal == null || inscricaoMunicipal.isBlank()) {
+			return "Inscrição Municipal obrigatório";	
 		}
 		
-		if (inscEst == null || inscEst.isBlank()) {
-			return "Inscrição Estadual obrigatório<br/>";	
+		if (inscricaoEstadual == null || inscricaoEstadual.isBlank()) {
+			return "Inscrição Estadual obrigatório";	
 		}
 				
 		return null;

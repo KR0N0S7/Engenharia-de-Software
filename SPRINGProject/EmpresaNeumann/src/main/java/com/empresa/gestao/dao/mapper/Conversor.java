@@ -47,7 +47,7 @@ public abstract class Conversor {
 		return lista;
 	}
 	
-	public static Object resultSetToObject(Object objeto, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException {
+	public static Object resultSetToObject(Object objeto, ResultSet resultado) throws SQLException {
 		
 		ResultSetMetaData metaDados = resultado.getMetaData();
 		
@@ -55,11 +55,27 @@ public abstract class Conversor {
 			int n = 1;
 			for (Field field : objeto.getClass().getDeclaredFields()) {
 				field.setAccessible(true);
-				field.set(objeto, resultado.getObject(metaDados.getColumnLabel(n)));
+				try {
+					field.set(objeto, resultado.getObject(metaDados.getColumnLabel(n)));
+				} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+					e.printStackTrace();
+				}
 				n++;
 			}
 		}
 
 		return objeto;		
+	}
+	
+	public static Object resultSetToAtributeList(ResultSet resultado) throws SQLException {
+	
+		List<Object> lista = new ArrayList<>();
+		
+		int n = 1;
+		if (resultado.next()) {
+			lista.add(resultado.getObject(n++));
+		}
+		
+		return lista;
 	}
 }

@@ -146,7 +146,7 @@ CREATE TABLE telefones (
 		CONSTRAINT FK_telefones_fornecedores 
 		FOREIGN KEY(fornecedor_id) REFERENCES fornecedores(id),
     tipos_telefone_id BIGINT,
-		CONSTRAINT FK_telefones_tipos_telefones 
+		CONSTRAINT FK_telefones_tipos_telefone 
 		FOREIGN KEY(tipos_telefone_id) REFERENCES tipos_telefones(id),
 	codigo VARCHAR(3) NOT NULL,
 	descricao VARCHAR(50)

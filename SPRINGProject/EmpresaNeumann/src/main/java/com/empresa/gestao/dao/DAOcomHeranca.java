@@ -3,6 +3,7 @@ package com.empresa.gestao.dao;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
@@ -107,7 +108,36 @@ public class DAOcomHeranca extends AbstractDAO {
 		System.out.println(sql);
 	}
 
-
+	@SuppressWarnings("deprecation")
+	public static Object consultarUltimaEntrada(String nome) throws SQLException {
+		nome = nome.substring(0,1).toUpperCase().concat(nome.substring(1));
+		String pacote = "com.empresa.gestao.entities." + nome;
+		Object objeto = new Object();
+		try {
+			objeto = Class.forName(pacote).newInstance();
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e1) {
+			e1.printStackTrace();
+		}
+		String nomeTabela = NameGeneratorSQL.gerarNomeTabelaSQL(objeto);
+		
+		String sql = "SELECT MAX(id) as numero FROM " + nomeTabela;
+		
+		Connection conexao = ConexaoDB.getConexao();
+		PreparedStatement psql = conexao.prepareStatement(sql);
+				
+		ResultSet resultado = psql.executeQuery();
+		
+		Object numeroId = null;
+		
+		if (resultado.next()) {
+			numeroId = resultado.getLong("numero");
+		}
+		
+		conexao.close();
+		
+		return numeroId;
+	}
+	
 	@Override
 	public void salvarObjectHandler(Object objeto) throws SQLException {
 		
@@ -182,13 +212,12 @@ public class DAOcomHeranca extends AbstractDAO {
 					ChaveEstrangeira chaveEstrangeira = atributo.getDeclaredAnnotation(ChaveEstrangeira.class);
 					if (chaveEstrangeira != null) {
 						String nomeAtributo = atributo
-								.getClass()
 								.getName();
-						Object ultimaEntrada = AbstractDAO.consultarUltimaEntrada(nomeAtributo);
+						Object ultimaEntrada = DAOcomHeranca.consultarUltimaEntrada(nomeAtributo);
 						
 						try {
-							psql.setObject(i++, ultimaEntrada.getClass().getDeclaredField("id"));
-						} catch (NoSuchFieldException | SecurityException | SQLException e) {
+							psql.setObject(i++, ultimaEntrada);
+						} catch (SecurityException | SQLException e) {
 							e.printStackTrace();
 						}
 					} else {

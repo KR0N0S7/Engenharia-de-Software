@@ -1,34 +1,29 @@
 package com.empresa.gestao.validadores;
 
-import com.empresa.gestao.entities.Fornecedor;
+import com.empresa.gestao.object_handler.ObjetoHandler;
 
-public class ValidarDadosObrigatoriosTelefone implements IStrategy {
+public class ValidarDadosObrigatoriosTelefone implements InterfaceStrategy {
 
 	public String processar(Object entidade) {
-		String verificaDado = new String();
-		Fornecedor fornecedor = (Fornecedor)entidade;
+		
+		ObjetoHandler objeto = (ObjetoHandler)entidade;
 
-        for (int i = 0; i<fornecedor.getTelefones().size(); i++) {
-			String ddi = fornecedor.getTelefones().get(i).getDdi();
-        	String ddd = fornecedor.getTelefones().get(i).getDdd();
-        	String numero = fornecedor.getTelefones().get(i).getNumero();
+		String ddi = objeto.getDdi();
+    	String ddd = objeto.getDdd();
+    	String numero = objeto.getNumero();
 
-			if(ddi == null || ddi == ""){
-			 	verificaDado += "DDI Telefone obrigatório(s)\n";
-		 	}
+		if(ddi == null || ddi == ""){
+		 	return "DDI Telefone obrigatório";
+	 	}
 
-			if(ddd == null || ddd == ""){
-			 	verificaDado += "DDD Telefone obrigatório(s)\n";
-		 	}
-			 
-			if(numero == null || numero == ""){
-			 	verificaDado += "Número Telefone obrigatório(s)\n";
-		 	}
+		if(ddd == null || ddd == ""){
+		 	return "DDD Telefone obrigatório";
+	 	}
+		 
+		if(numero == null || numero == ""){
+		 	return "Número Telefone obrigatório";
+	 	}
 
-			if(verificaDado != ""){
-				return verificaDado;
-			}
-        }
 		return null;
 	}
 }

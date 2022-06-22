@@ -9,53 +9,26 @@
 
 	<div class="card">
 		<div class="card-header">
-			<p class="text-primary">Novo Fornecedor</p>
+			<p class="text-primary">Novo Usuário</p>
 		</div>
 		<div>
 			<div class="card-body">
-				<form class="row g-3" method="POST" th:object="${fornecedor}"
-					th:action="@{/fornecedor/form}">
+				<form class="row g-3" method="POST" th:object="${usuario}"
+					th:action="@{/usuario/form}">
 					<input type="hidden" th:field="*{id}"></input>
 
-					<div class="col-4">
-						<label for="nome" class="form-label">Razão Social </label> <input
-							type="text" class="form-control" th:field="*{rzSocial}"
+					<div class="col-6">
+						<label for="nome" class="form-label">Login </label> <input
+							type="text" class="form-control" th:field="*{login}"
 							placeholder="">
 					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Nome Fantasia </label> <input
-							type="text" class="form-control" th:field="*{nmFantasia}"
+					<div class="col-6">
+						<label for="nome" class="form-label">Senha </label> <input
+							type="text" class="form-control" th:field="*{senha}"
 							placeholder="">
 					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">CNPJ </label> <input
-							type="text" class="form-control" th:field="*{cnpj}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Estadual </label> <input
-							type="text" class="form-control" th:field="*{inscricaoEstadual}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Municipoal
-						</label> <input type="text" class="form-control"
-							th:field="*{inscricaoMunicipal}" placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">E-Mail </label> <input
-							type="text" class="form-control" th:field="*{email}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Data Cadastro </label> <input
-							type="text" class="form-control" th:field="*{dtCadastro}"
-							placeholder="">
-					</div>
-
-					<div class="rom-row">
-						
-					</div>
+					
+					
 
 				<div class="col-md-2">
 					<button type="submit" class="btn btn-primary">Salvar

@@ -6,7 +6,7 @@
 <div layout:fragment="content">
 
 	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
-		Nenhum fornecedor cadastrado</div>
+		Nenhuma Cidade cadastrada.</div>
 	<div class="alert alert-primary" th:if="${mensagem != null}"
 		th:text="${mensagem}"></div>
 
@@ -17,30 +17,21 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Razão Social</th>
-					<th>Nome Fantasia</th>
-					<th>CNPJ</th>
-					<th>Inscrição Estadual</th>
-					<th>Inscrição Municipal</th>
-					<th>E-Mail</th>
-					<th>Data Cadastro</th>
+					<th>Descrição</th>
+					<th>Estado</th>
+					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="fornecedor : ${lista}">
-					<td th:text="${fornecedor.id}"></td>
-					<td th:text="${fornecedor.rzSocial}"></td>
-					<td th:text="${fornecedor.nmFantasia}"></td>
-					<td th:text="${fornecedor.cnpj}"></td>
-					<td th:text="${fornecedor.inscricaoEstadual}"></td>
-					<td th:text="${fornecedor.inscricaoMunicipal}"></td>
-					<td th:text="${fornecedor.email}"></td>
-					<td th:text="${fornecedor.dtCadastro}"></td>
-					<td width="auto"><a class="btn btn-primary btn-sm"
-						th:href="@{/fornecedor/form(id=${fornecedor.id})}">Editar</a> <a
+				<tr  th:each="cidade : ${lista}">
+					<td th:text="${cidade.id}"></td>
+					<td th:text="${cidade.descricao}"></td>
+					<td th:text="${cidade.estado}"></td>
+					<td width="132"><a class="btn btn-primary btn-sm"
+						th:href="@{/cidade/form(id=${cidade.id})}">Editar</a> <a
 						class="btn btn-primary btn-sm"
-						th:href="@{/fornecedor/excluir(id=${fornecedor.id})}"
-						onclick="return confirm('Você realmente deseja excluir esse fornecedor?')">Excluir</a></td>
+						th:href="@{/cidade/excluir(id=${cidade.id})}"
+						onclick="return confirm('Você realmente deseja excluir essa Cidade?')">Excluir</a></td>
 				</tr>
 			</tbody>
 		</table>

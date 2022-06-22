@@ -3,11 +3,11 @@ package com.empresa.gestao.services;
 import java.sql.SQLException;
 
 import com.empresa.gestao.dao.DAO;
-import com.empresa.gestao.dao.IDAO;
+import com.empresa.gestao.dao.InterfaceDAO;
 
 public class AbstractService implements IService {
 
-	IDAO dao = new DAO();
+	InterfaceDAO dao = new DAO();
 	
 	
 	public void salvarObject(Object obj) throws SQLException {
