@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+
+	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+		Nenhum objeto cadastrado</div>
+	<div class="alert alert-primary" th:if="${mensagem != null}"
+		th:text="${mensagem}"></div>
+
+	<div th:if="${not #lists.isEmpty(lista)}">
+
+		<table class="table table-striped">
+
+			<thead>
+				<tr>
+					<th>Objeto</th>
+					<th>Mensagem</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="resultadoFachada : ${lista}">
+					<td th:text="${resultadoFachada.entidade}"></td>
+					<td th:text="${resultadoFachada.msg}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn btn-primary" th:href="@{/}" role="button">Voltar</a>
+	</div>
+</div>
+</html>

@@ -8,25 +8,37 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Conversor {
+public abstract class Conversor {
 
-	public static List<Object> resultSetToList(Class<?> clazz, ResultSet resultado) throws SQLException, IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	public static List<Object> resultSetToList(Class<?> clazz, ResultSet resultado) throws SQLException {
 		
 		ResultSetMetaData metaDados = resultado.getMetaData();
 		List<Object> lista = new ArrayList<>();
 		
 		while (resultado.next()) {
 
-			Object obj = clazz.getDeclaredConstructor().newInstance();
+			Object obj = null;
+			try {
+				obj = clazz.getDeclaredConstructor().newInstance();
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
 			
 			int n = 1;
-			for (Field field : obj.getClass().getDeclaredFields()) {
+			Field[] atributos = obj.getClass().getDeclaredFields();
+			for (Field field : atributos) {
 				
-				System.out.println(field.getName() + ": " +  resultado.getObject(n));
-				System.out.println(metaDados.getColumnLabel(n));
+//				System.out.println(field.getName() + ": " +  resultado.getObject(n));
+//				System.out.println(metaDados.getColumnLabel(n));
 				
 				field.setAccessible(true);
-				field.set(obj, resultado.getObject(metaDados.getColumnLabel(n)));
+				try {
+					Object valor = resultado.getObject(metaDados.getColumnLabel(n));
+					field.set(obj, valor);
+				} catch (IllegalArgumentException | IllegalAccessException | SQLException e) {
+					e.printStackTrace();
+				}
 				n++;
 			}
 			lista.add(obj);

@@ -9,47 +9,58 @@
 
 	<div class="card">
 		<div class="card-header">
-			<p class="text-primary">Novo Fornecedor</p>
+			<p class="text-primary">Novo Telefone</p>
 		</div>
 		<div>
 			<div class="card-body">
-				<form class="row g-3" method="POST" th:object="${fornecedor}"
-					th:action="@{/fornecedor/form}">
+				<form class="row g-3" method="POST" th:object="${ramal}"
+					th:action="@{/ramal/form}">
 					<input type="hidden" th:field="*{id}"></input>
 
 					<div class="col-4">
-						<label for="nome" class="form-label">Razão Social </label> <input
-							type="text" class="form-control" th:field="*{rzSocial}"
+						<label for="nome" class="form-label">DDD </label> <input
+							type="text" class="form-control" th:field="*{ddd}"
 							placeholder="">
 					</div>
 					<div class="col-4">
-						<label for="nome" class="form-label">Nome Fantasia </label> <input
-							type="text" class="form-control" th:field="*{nmFantasia}"
+						<label for="nome" class="form-label">DDI</label> <input
+							type="text" class="form-control" th:field="*{ddi}"
 							placeholder="">
 					</div>
 					<div class="col-4">
-						<label for="nome" class="form-label">CNPJ </label> <input
-							type="text" class="form-control" th:field="*{cnpj}"
+						<label for="nome" class="form-label">Número </label> <input
+							type="text" class="form-control" th:field="*{numero}"
+							placeholder="">
+					</div>
+										
+					<div class="col-4">
+							<label for="nome" class="form-label">Tipo de Telefone</label> <select
+								class="form-select" th:field="*{tipoTelefone}">
+								<option th:each="tipoTelefone : ${TipoTelefone}"
+									th:value="${tipoTelefone.id}" 
+									th:text=${tipoTelefone.descricao} />
+							</select>
+						
+					</div>
+					
+					<div class="col-4">
+							<label for="nome" class="form-label">Fornecedor</label> <select
+								class="form-select" th:field="*{fornecedor}">
+								<option th:each="fornecedor : ${Fornecedor}"
+									th:value="${fornecedor.id}" 
+									th:text=${fornecedor.nmFantasia} />
+							</select>
+						
+					</div>
+					
+					<div class="col-4">
+						<label for="nome" class="form-label">Código </label> <input
+							type="text" class="form-control" th:field="*{codigo}"
 							placeholder="">
 					</div>
 					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Estadual </label> <input
-							type="text" class="form-control" th:field="*{inscricaoEstadual}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Inscrição Municipoal
-						</label> <input type="text" class="form-control"
-							th:field="*{inscricaoMunicipal}" placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">E-Mail </label> <input
-							type="text" class="form-control" th:field="*{email}"
-							placeholder="">
-					</div>
-					<div class="col-4">
-						<label for="nome" class="form-label">Data Cadastro </label> <input
-							type="text" class="form-control" th:field="*{dtCadastro}"
+						<label for="nome" class="form-label">Descrição </label> <input
+							type="text" class="form-control" th:field="*{descricao}"
 							placeholder="">
 					</div>
 

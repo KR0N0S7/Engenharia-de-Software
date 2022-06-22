@@ -50,13 +50,17 @@ public class Fornecedor {
 	private String rzSocial;
 	
 	@Column(name = "tipo_fornecimento")
+	@ChaveEstrangeira
 	private TipoFornecimento tipoFornecimento;
 	
+	@ChaveEstrangeira
 	private Status status;
 	
 	@ManyToOne
 	@ChaveEstrangeira
 	private Endereco endereco;
+	
+//	private List<Contato> contatos;
 	
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}
@@ -80,6 +84,9 @@ public class Fornecedor {
 	public void setStatus(Status status) {	this.status = status; }
 	public TipoFornecimento getTipoFornecimento() {	return tipoFornecimento;	}
 	public void setTipoFornecimento(TipoFornecimento tipoFornecimento) {	this.tipoFornecimento = tipoFornecimento;	}
+//	public List<Contato> getContatos() {	return contatos;	}
+//	public void setContatos(List<Contato> contatos) {	this.contatos = contatos;	}
+	
 	
 //	public void salvar() {
 //		

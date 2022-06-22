@@ -1,10 +1,15 @@
 package com.empresa.gestao.entities;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
+
+@MappedSuperclass
 @Table(name = "telefones")
 public class Telefone {
 
@@ -15,8 +20,11 @@ public class Telefone {
 	private String numero;
 	private String ddi;
 	
+	@ChaveEstrangeira
 	private Fornecedor fornecedor;
-	
+
+	@Column(name = "tipos_telefone")
+	@ChaveEstrangeira
 	private TipoTelefone tipoTelefone;
 	
 	public String getDdd() {	return ddd;	}

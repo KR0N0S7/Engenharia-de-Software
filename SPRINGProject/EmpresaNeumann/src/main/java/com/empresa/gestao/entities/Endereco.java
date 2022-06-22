@@ -1,9 +1,12 @@
 package com.empresa.gestao.entities;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 
 @Table(name = "enderecos")
 public class Endereco {
@@ -17,10 +20,15 @@ public class Endereco {
 	private String bairro;
 	private String complemento;
 	
+	@ChaveEstrangeira
 	private Cidade cidade;
 	
+	@Column(name = "tipo_logradouro")
+	@ChaveEstrangeira
 	private TipoLogradouro tipoLogradouro;
 	
+	@Column(name = "tipo_endereco")
+	@ChaveEstrangeira
 	private TipoEndereco tipoEndereco;
 	
 	public Long getId() {	return id;	}

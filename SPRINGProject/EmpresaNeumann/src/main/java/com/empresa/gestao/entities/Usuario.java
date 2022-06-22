@@ -5,6 +5,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
+
 @Table(name = "usuarios")
 public class Usuario {
 
@@ -14,6 +16,7 @@ public class Usuario {
 	private String login;
 	private String senha;
 	
+	@ChaveEstrangeira
 	private Pessoa pessoa;
 
 	public String getLogin() {	return login;	}

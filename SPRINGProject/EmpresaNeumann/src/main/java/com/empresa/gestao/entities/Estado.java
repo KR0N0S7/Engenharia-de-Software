@@ -22,13 +22,6 @@ public class Estado {
 	@ChaveEstrangeira
 	private Pais pais;
 	
-	public Estado() {	}
-
-	public Estado(String descricao, String sigla) {
-		this.descricao = descricao;
-		this.sigla = sigla;
-	}
-
 	public Long getId() {	return id;	}
 	public void setId(Long id) {	this.id = id;	}
 	public String getDescricao() {	return descricao;	}

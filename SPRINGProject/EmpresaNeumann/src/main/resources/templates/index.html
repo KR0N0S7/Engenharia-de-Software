@@ -5,6 +5,10 @@ layout:decorate="~{layout.html}"
 >
 <meta charset="UTF-8">
 <div layout:fragment="content">
-	Seja bem-vindo.
+<div class="alert alert-primary" th:if="${mensagem != null}"
+		th:text="${mensagem}"></div>
+
+	<h2>Seja bem-vindo</h2><br><br>
+	<a class="btn btn-primary" th:href="@{/vh/form}" role="button">Cadastrar Fornecedor</a>
 </div>
 </html>

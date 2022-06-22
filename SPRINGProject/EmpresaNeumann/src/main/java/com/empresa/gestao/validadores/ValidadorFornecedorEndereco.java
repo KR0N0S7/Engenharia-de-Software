@@ -1,21 +1,20 @@
 package com.empresa.gestao.validadores;
 
-import com.empresa.gestao.entities.Endereco;
+import com.empresa.gestao.entities.Fornecedor;
 
-public class ValidadorEndereco implements IStrategy {
-	
+public class ValidadorFornecedorEndereco implements IStrategy {
 	public String processar(Object entidade) {
 		
-		Endereco endereco = (Endereco)entidade;
-		String tipoEndereco = endereco.getTipoEndereco().toString();
-		String tipoLogradouro = endereco.getTipoLogradouro().toString();
-		String logradouro = endereco.getLogradouro();
-		String numero = endereco.getNumero();
-		String bairro = endereco.getBairro();
-		String cidade = endereco.getCidade().toString();
-		String estado = endereco.getCidade().getEstado().toString();
-		String pais = endereco.getCidade().getEstado().getPais().toString();
-		String cep = endereco.getCep();
+		Fornecedor fornecedor = (Fornecedor)entidade;
+		String tipoEndereco = fornecedor.getEndereco().getTipoEndereco().toString();
+		String tipoLogradouro = fornecedor.getEndereco().getTipoLogradouro().toString();
+		String logradouro = fornecedor.getEndereco().getLogradouro();
+		Integer numero = fornecedor.getEndereco().getNumero();
+		String bairro = fornecedor.getEndereco().getBairro();
+		String cidade = fornecedor.getEndereco().getCidade().toString();
+		String estado = fornecedor.getEndereco().getCidade().getEstado().toString();
+		String pais = fornecedor.getEndereco().getCidade().getEstado().getPais().toString();
+		Integer cep = fornecedor.getEndereco().getCep();
 		
 		if ( tipoEndereco  == null || tipoEndereco.isBlank()){
 			return "Tipo do endereço obrigatório<br/>";
@@ -46,7 +45,7 @@ public class ValidadorEndereco implements IStrategy {
 		}
 		
 		if (pais == null || pais.isBlank()) {
-			return "País obrigatório<br/>";	
+			return "Pa�s obrigatório<br/>";	
 		}
 
 		if (cep == null) {

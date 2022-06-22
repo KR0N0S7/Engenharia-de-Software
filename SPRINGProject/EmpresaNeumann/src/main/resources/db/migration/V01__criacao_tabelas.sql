@@ -11,7 +11,6 @@ CREATE TABLE tipo_empresa (
 
 CREATE TABLE empresas (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
-	tipo_empresa VARCHAR(10) NOT NULL,
 	
 	tipo_empresa_id BIGINT,
 		CONSTRAINT FK_empresas_tipo_empresa 
@@ -143,15 +142,14 @@ CREATE TABLE telefones (
 	ddd VARCHAR(3),
 	numero VARCHAR(10) NOT NULL,
 	ddi VARCHAR(3),
-	codigo VARCHAR(3) NOT NULL,
-	descricao VARCHAR(50),
-	
     fornecedor_id BIGINT,
 		CONSTRAINT FK_telefones_fornecedores 
 		FOREIGN KEY(fornecedor_id) REFERENCES fornecedores(id),
     tipos_telefone_id BIGINT,
 		CONSTRAINT FK_telefones_tipos_telefones 
-		FOREIGN KEY(tipos_telefone_id) REFERENCES tipos_telefones(id)
+		FOREIGN KEY(tipos_telefone_id) REFERENCES tipos_telefones(id),
+	codigo VARCHAR(3) NOT NULL,
+	descricao VARCHAR(50)
 );
 
 CREATE TABLE pessoas (

@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
+
 @Table(name = "ordens_servicos")
 public class OrdemServico {
 
@@ -15,10 +17,13 @@ public class OrdemServico {
 	private Long id;
 	private long dtInicio;
 	
+	@ChaveEstrangeira
 	private Empresa empresa;
 	
+	@ChaveEstrangeira
 	private List<Servico> servicos;
 	
+	@ChaveEstrangeira
 	private Fornecedor fornecedor;
 	
 	public Long getId() {	return id;	}

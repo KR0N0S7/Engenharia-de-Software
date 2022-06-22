@@ -1,22 +1,21 @@
 package com.empresa.gestao.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 
 @Table(name = "contatos")
 public class Contato extends Pessoa {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String email;
 	
+	@ChaveEstrangeira
 	private Departamento departamento;
 	
+	@ChaveEstrangeira
 	private Fornecedor fornecedor;
 	
+	@ChaveEstrangeira
 	private Telefone telefone;
 	
 	public String getEmail() {	return email;	}
@@ -27,6 +26,4 @@ public class Contato extends Pessoa {
 	public void setFornecedor(Fornecedor fornecedor) {	this.fornecedor = fornecedor;	}
 	public Telefone getTelefone() {		return telefone;	}
 	public void setTelefone(Telefone telefone) {	this.telefone = telefone;	}
-	public Long getId() {	return id;	}
-	public void setId(Long id) {	this.id = id;	}
 }

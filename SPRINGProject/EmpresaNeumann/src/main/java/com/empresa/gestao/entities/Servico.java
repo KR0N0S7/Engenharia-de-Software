@@ -1,9 +1,12 @@
 package com.empresa.gestao.entities;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 
 @Table(name = "servicos")
 public class Servico {
@@ -13,8 +16,11 @@ public class Servico {
 	private Long id;
 	private String descricao;
 	
+	@Column(name = "ordem_servico")
+	@ChaveEstrangeira
 	private OrdemServico ordemServico;
 	
+	@ChaveEstrangeira
 	private Fornecedor fornecedor;
 	
 	public Long getId() {	return id;	}

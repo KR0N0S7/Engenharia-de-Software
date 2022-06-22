@@ -5,6 +5,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
+
 @Table(name = "cidades")
 public class Cidade {
 
@@ -13,6 +15,7 @@ public class Cidade {
 	private Long id;
 	private String descricao;
 	
+	@ChaveEstrangeira
 	private Estado estado;
 	
 	public Long getId() {	return id;	}

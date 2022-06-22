@@ -1,10 +1,10 @@
 package com.empresa.gestao.controllers;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,12 +12,15 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.empresa.gestao.controllers.html_builder.HtmlBuilder;
+import com.empresa.gestao.dao.annotations.ChaveEstrangeira;
 import com.empresa.gestao.services.ObjectService;
+import com.empresa.gestao.services.ObjectSuperService;
 
 public abstract class GenericController extends HtmlBuilder {
 	
-	@Autowired
-	public ObjectService service;
+	public ObjectService service = new ObjectService();
+	
+	public ObjectSuperService superService = new ObjectSuperService();
 
 	@RequestMapping(CRIAR_ALTERAR)
 	public ModelAndView criar(@RequestParam(required = false) Long id) throws Exception {
@@ -31,17 +34,34 @@ public abstract class GenericController extends HtmlBuilder {
 		String html = HtmlBuilder.construtorForm(nomeClasse);
 		
 		ModelAndView mv = new ModelAndView(html);		
-		Object objeto;
+		Object objeto;		
+		
 		if(id == null) {
 			objeto = classeEntity.getDeclaredConstructor().newInstance();
 		} else {
 			try {
-				objeto = service.obterObject(id, classeEntity);
+				if (!classeEntity.getSuperclass().getSimpleName().equals("Object")) {
+					objeto = superService.obterObject(id, classeEntity);
+				} else {
+					objeto = service.obterObject(id, classeEntity);
+				}
 			} catch (Exception e) {
 				objeto = classeEntity.getDeclaredConstructor().newInstance();
 				mv.addObject("mensagem", e.getMessage());
 			}
 		}
+		Field[] fields = classeEntity.getDeclaredFields();
+		
+		for (Field field : fields) {
+			if (field.getDeclaredAnnotation(ChaveEstrangeira.class) != null) {
+				String nome = field.getName();
+				nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+				String pacoteLista = "com.empresa.gestao.entities." + nome;
+				Class<?> classeQueSeraListada = Class.forName(pacoteLista);
+				mv.addObject(nome, service.listarObjects(classeQueSeraListada));
+			}
+		}
+		
 		mv.addObject(nomeEntidade.toLowerCase(), objeto);
 		return mv;
 	}
@@ -62,6 +82,7 @@ public abstract class GenericController extends HtmlBuilder {
 		if(bindingResult.hasErrors()) {
 			ModelAndView mv = new ModelAndView(htmlForm);
 			mv.addObject(nomeEntidadeLetraMinuscula, objeto);
+			mv.addObject("mensagem", "Erro ao salvar objeto.");
 			return mv;
 		}
 		ModelAndView mv = new ModelAndView(htmlForm);
@@ -74,11 +95,19 @@ public abstract class GenericController extends HtmlBuilder {
 			novo = false;
 		} 
 		if (novo) {
-			service.salvarObject(objeto);
+			if (!classeEntity.getSuperclass().getSimpleName().equals("Object")) {
+				superService.salvarObject(objeto);
+			} else {
+				service.salvarObject(objeto);
+			}
 			mv.addObject(nomeEntidadeLetraMinuscula, classeEntity.getDeclaredConstructor().newInstance());
 		} else {
 			Long id = (Long) getId.invoke(objeto);
-			service.alterarObject(id, objeto);
+			if (!classeEntity.getSuperclass().getSimpleName().equals("Object")) {
+				superService.alterarObject(id, objeto);
+			} else {
+				service.alterarObject(id, objeto);
+			}
 			mv.addObject(nomeEntidadeLetraMinuscula, objeto);
 		}
 		mv.addObject("mensagem", "Ação realizada com sucesso!");
@@ -97,7 +126,13 @@ public abstract class GenericController extends HtmlBuilder {
 		Class<?> classeEntity = Class.forName(pacote);
 		
 		ModelAndView mv = new ModelAndView(htmlListar);
-		mv.addObject("lista", service.listarObjects(classeEntity));
+		Object listaObjects;
+		if (!classeEntity.getSuperclass().getSimpleName().equals("Object")) {
+			listaObjects = superService.listarObjects(classeEntity);
+		} else {
+			listaObjects = service.listarObjects(classeEntity);
+		}
+		mv.addObject("lista", listaObjects);
 		return  mv;	
 	}
 	

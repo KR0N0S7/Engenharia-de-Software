@@ -19,6 +19,9 @@ public class EstadoController extends GenericController {
 	@RequestMapping(method = RequestMethod.POST, path = CRIAR_ALTERAR)
 	public ModelAndView salvar(@Valid Estado objeto, BindingResult bindingResult, RedirectAttributes redirectAttributes)
 			throws Exception {
+		System.out.println(objeto.getDescricao());
+		System.out.println(objeto.getSigla());
+		System.out.println(objeto.getPais());
 		return super.salvar(objeto, bindingResult, redirectAttributes);
 	}
 }

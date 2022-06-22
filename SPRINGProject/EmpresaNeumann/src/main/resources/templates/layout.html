@@ -59,7 +59,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Endereço </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/endereco/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/endereco/form}">Cadastrar</a></li>
 								<li><a class="dropdown-item" th:href="@{/endereco/listar}">Listar</a></li>
 							</ul></li>
 							
@@ -72,8 +72,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#"> Logradouro <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" th:href="@{/departamento/editar}">Cadastrar</a></li>
-          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li><a tabindex="-1" th:href="@{/tplog/form}">Cadastrar</a></li>
+          <li><a tabindex="-1" th:href="@{/tplog/listar}">Listar </a></li>
           <li class="dropdown-submenu">
             
             
@@ -83,8 +83,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#"> Endereço <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Cadastrar</a></li>
-          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li><a tabindex="-1" th:href="@{/tpend/form}">Cadastrar</a></li>
+          <li><a tabindex="-1" th:href="@{/tpend/listar}">Listar </a></li>
           <li class="dropdown-submenu">
             
             
@@ -94,8 +94,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#"> Telefone <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Cadastrar</a></li>
-          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li><a tabindex="-1" th:href="@{/tptel/form}">Cadastrar</a></li>
+          <li><a tabindex="-1" th:href="@{/tptel/listar}">Listar </a></li>
           <li class="dropdown-submenu">
             
             
@@ -111,8 +111,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Cidade </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/cidade/editar}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/cidade/listar}">Listar</a></li>
 							</ul></li>
 							
 						<li class="nav-item dropdown"><a
@@ -121,8 +121,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> UF </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/estado/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/estado/listar}">Listar</a></li>
 							</ul></li>
 							
 						<li class="nav-item dropdown"><a
@@ -151,38 +151,19 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> CNAE </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/cnae/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/cnae/listar}">Listar</a></li>
 							</ul></li>
 							
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Contato </a>
-							<ul class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
-							</ul></li>
-							
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#"
-							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Ramal </a>
-							<ul class="dropdown-menu"
-								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
-							</ul></li>
-							
+						
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Telefone </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/ramal/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/ramal/listar}">Listar</a></li>
 							</ul></li>
 							
 						<li class="nav-item dropdown"><a
@@ -191,8 +172,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Pessoa </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/contato/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/contato/listar}">Listar</a></li>
 							</ul></li>
 							
 							<li class="nav-item dropdown"><a
@@ -201,8 +182,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Usuário </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/usuario/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/usuario/listar}">Listar</a></li>
 							</ul></li>
 							
 						<li class="nav-item dropdown"><a
@@ -214,8 +195,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#"> Serviço <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" th:href="@{/departamento/editar}">Cadastrar</a></li>
-          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li><a tabindex="-1" th:href="@{/servico/form}">Cadastrar</a></li>
+          <li><a tabindex="-1" th:href="@{/servico/listar}">Listar </a></li>
           <li class="dropdown-submenu">
             
             
@@ -225,8 +206,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
       <li class="dropdown-submenu">
         <a class="test" tabindex="-1" href="#"> Ordem de Serviço <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">Cadastrar</a></li>
-          <li><a tabindex="-1" href="#">Listar </a></li>
+          <li><a tabindex="-1" th:href="@{/os/form}">Cadastrar</a></li>
+          <li><a tabindex="-1" th:href="@{/os/listar}">Listar </a></li>
           <li class="dropdown-submenu">
             
             
@@ -243,8 +224,8 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 							data-bs-toggle="dropdown" aria-expanded="false"> Produto </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/departamento/editar}">Cadastrar</a></li>
-								<li><a class="dropdown-item" th:href="@{/departamento/listar}">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/produto/form}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/produto/listar}">Listar</a></li>
 							</ul></li>
 						
 					</ul>
